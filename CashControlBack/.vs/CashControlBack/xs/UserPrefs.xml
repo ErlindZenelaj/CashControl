@@ -1,4 +1,21 @@
 ﻿<Properties StartupConfiguration="{2CF2F6CD-C335-4CB3-8F15-9DA0B1F4F038}|Default">
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.CashControlBack FirstBuild="True" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="appsettings.json">
+    <Files>
+      <File FileName="appsettings.json" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="CashControlBack" expanded="True" selected="True">
+            <Node name="CashControlBack" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.CashControlBack PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
