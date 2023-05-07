@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Threading.Tasks;
+using CashControlBack.Core;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,9 +13,22 @@ namespace CashControlBack.Controllers
 {
     public class RoleController : Controller
     {
-        [Authorize(Policy = "EmployeeOnly")]
-        // GET: /<controller>/
+ 
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        [Authorize(Policy = "RequireCompany")]
+   
+        public IActionResult Company()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = $"{Constants.Roles.Administrator},{Constants.Roles.Company}")]
+
+        public IActionResult Admin()
         {
             return View();
         }
