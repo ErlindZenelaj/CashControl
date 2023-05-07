@@ -16,12 +16,14 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.15" />
+    <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="21.2.3" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="Repositories\" />
     <None Remove="Views\Dashboard\" />
     <None Remove="Views\Transaction\" />
+    <None Remove="Core\ViewModel\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repositories\" />
@@ -29,5 +31,6 @@
     <Folder Include="Views\User\" />
     <Folder Include="Views\Dashboard\" />
     <Folder Include="Views\Transaction\" />
+    <Folder Include="Core\ViewModel\" />
   </ItemGroup>
 </Project>
