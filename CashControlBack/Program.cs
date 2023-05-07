@@ -4,9 +4,12 @@ using CashControlBack.Areas.Identity.Data;
 using Microsoft.VisualBasic;
 using CashControlBack.Core;
 using Constants = CashControlBack.Core.Constants;
+using CashControlBack.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("ApplicationDbContextConnection") ?? throw new InvalidOperationException("Connection string 'ApplicationDbContextConnection' not found.");
+
+
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
@@ -17,6 +20,10 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//DI
+builder.Services.AddDbContext<ApplicationDb>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection")));
 
 AddAuthorizationPolicies();
 
