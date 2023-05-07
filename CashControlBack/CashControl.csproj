@@ -23,5 +23,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repositories\" />
+    <Folder Include="Views\Category\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
 </Project>

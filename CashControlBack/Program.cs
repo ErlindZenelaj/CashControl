@@ -29,7 +29,7 @@ app.UseAuthentication();;
 
 app.UseAuthorization();
 
-
+AddAuthorizationPolicies();
 
 
 app.MapControllerRoute(
@@ -39,5 +39,17 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 app.Run();
+
+
+void AddAuthorizationPolicies()
+{
+    builder.Services.AddAuthorization(options =>
+    {
+        options.AddPolicy("EmployeeOnly", policy => policy.RequireClaim("EmployeeNumber"));
+    });
+
+  
+
+}
 
 

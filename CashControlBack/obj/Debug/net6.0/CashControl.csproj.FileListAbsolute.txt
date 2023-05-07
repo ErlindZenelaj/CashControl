@@ -7,3 +7,12 @@
 /Users/erlindzenelaj/Documents/GitHub/CashControl/CashControlBack/obj/Debug/net6.0/CashControl.MvcApplicationPartsAssemblyInfo.cache
 /Users/erlindzenelaj/Documents/GitHub/CashControl/CashControlBack/obj/Debug/net6.0/CashControl.RazorAssemblyInfo.cache
 /Users/erlindzenelaj/Documents/GitHub/CashControl/CashControlBack/obj/Debug/net6.0/CashControl.RazorAssemblyInfo.cs
+C:\Users\DELL\Documents\GitHub\CashControl\CashControlBack\obj\Debug\net6.0\CashControl.csproj.AssemblyReference.cache
+C:\Users\DELL\Documents\GitHub\CashControl\CashControlBack\obj\Debug\net6.0\CashControl.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DELL\Documents\GitHub\CashControl\CashControlBack\obj\Debug\net6.0\CashControl.AssemblyInfoInputs.cache
+C:\Users\DELL\Documents\GitHub\CashControl\CashControlBack\obj\Debug\net6.0\CashControl.AssemblyInfo.cs
+C:\Users\DELL\Documents\GitHub\CashControl\CashControlBack\obj\Debug\net6.0\CashControl.csproj.CoreCompileInputs.cache
+C:\Users\DELL\Documents\GitHub\CashControl\CashControlBack\obj\Debug\net6.0\CashControl.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\DELL\Documents\GitHub\CashControl\CashControlBack\obj\Debug\net6.0\CashControl.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\DELL\Documents\GitHub\CashControl\CashControlBack\obj\Debug\net6.0\CashControl.RazorAssemblyInfo.cache
+C:\Users\DELL\Documents\GitHub\CashControl\CashControlBack\obj\Debug\net6.0\CashControl.RazorAssemblyInfo.cs
