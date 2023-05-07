@@ -10429,9 +10429,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/erlindzenelaj/Documents/GitHub/CashControl/CashControlBack/CashControlBack.csproj",
-      "projectName": "CashControlBack",
-      "projectPath": "/Users/erlindzenelaj/Documents/GitHub/CashControl/CashControlBack/CashControlBack.csproj",
+      "projectUniqueName": "/Users/erlindzenelaj/Documents/GitHub/CashControl/CashControlBack/CashControl.csproj",
+      "projectName": "CashControl",
+      "projectPath": "/Users/erlindzenelaj/Documents/GitHub/CashControl/CashControlBack/CashControl.csproj",
       "packagesPath": "/Users/erlindzenelaj/.nuget/packages/",
       "outputPath": "/Users/erlindzenelaj/Documents/GitHub/CashControl/CashControlBack/obj/",
       "projectStyle": "PackageReference",

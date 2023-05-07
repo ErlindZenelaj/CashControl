@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6T1jwU+u8+2nJnquxEFjwD7vaWuDiwZr/HXAhXFx+rw54WELd1WO9n5YtyJqZ0DunRdsv4bEuHV//RjacpX+Cw==",
+  "dgSpecHash": "BeXcyPdE1ssY7Wdi8ysZW9JE15FHy/20rctfXHiIZZqaxtoAdbsgVPHxogqdXQcM7nTa9lhWeO6gFKohlxnZpg==",
   "success": true,
-  "projectFilePath": "/Users/erlindzenelaj/Documents/GitHub/CashControl/CashControlBack/CashControlBack.csproj",
+  "projectFilePath": "/Users/erlindzenelaj/Documents/GitHub/CashControl/CashControlBack/CashControl.csproj",
   "expectedPackageFiles": [
     "/Users/erlindzenelaj/.nuget/packages/humanizer.core/2.8.26/humanizer.core.2.8.26.nupkg.sha512",
     "/Users/erlindzenelaj/.nuget/packages/messagepack/2.1.152/messagepack.2.1.152.nupkg.sha512",
