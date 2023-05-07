@@ -1,16 +1,43 @@
-﻿<Properties StartupConfiguration="{2CF2F6CD-C335-4CB3-8F15-9DA0B1F4F038}|Default">
+﻿<Properties StartupConfiguration="{2CF2F6CD-C335-4CB3-8F15-9DA0B1F4F038}|CashControlBack">
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Migrations/20230507185623_SeedRoles.cs">
+    <Files>
+      <File FileName="Program.cs" Line="48" Column="5" />
+      <File FileName="appsettings.json" Line="12" Column="2" />
+      <File FileName="Controllers/RoleController.cs" Line="14" Column="45" />
+      <File FileName="Areas/Identity/Pages/Account/Login.cshtml.cs" Line="129" Column="59" />
+      <File FileName="Migrations/20230507185623_SeedRoles.cs" Line="76" Column="15" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="CashControlBack" expanded="True">
-            <Node name="CashControl" expanded="True" />
+            <Node name="CashControl" expanded="True">
+              <Node name="Areas" expanded="True">
+                <Node name="Identity" expanded="True">
+                  <Node name="Pages" expanded="True">
+                    <Node name="Account" expanded="True">
+                      <Node name="Login.cshtml" expanded="True" />
+                    </Node>
+                  </Node>
+                </Node>
+              </Node>
+              <Node name="Controllers" expanded="True" />
+              <Node name="Migrations" expanded="True">
+                <Node name="20230507185623_SeedRoles.cs" selected="True" />
+              </Node>
+              <Node name="Views" expanded="True">
+                <Node name="Category" expanded="True" />
+                <Node name="Dashboard" expanded="True" />
+                <Node name="User" expanded="True" />
+              </Node>
+              <Node name="wwwroot" expanded="True" />
+            </Node>
           </Node>
         </State>
       </Pad>

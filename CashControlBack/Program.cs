@@ -15,6 +15,9 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+AddAuthorizationPolicies(builder.Services);
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -29,21 +32,20 @@ app.UseAuthentication();;
 
 app.UseAuthorization();
 
-AddAuthorizationPolicies();
 
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-app.MapRazorPages();
+app.MapRazorPages(); 
 
 app.Run();
 
 
-void AddAuthorizationPolicies()
+void AddAuthorizationPolicies(IServiceCollection services)
 {
-    builder.Services.AddAuthorization(options =>
+    services.AddAuthorization(options =>
     {
         options.AddPolicy("EmployeeOnly", policy => policy.RequireClaim("EmployeeNumber"));
     });

@@ -1,8 +1,8 @@
 {
   "Files": [
     {
-      "Id": "/Users/erlindzenelaj/Documents/GitHub/CashControl/CashControlBack/obj/Debug/net6.0/scopedcss/projectbundle/CashControlBack.bundle.scp.css",
-      "PackagePath": "staticwebassets/CashControlBack.bundle.scp.css"
+      "Id": "/Users/erlindzenelaj/Documents/GitHub/CashControl/CashControlBack/obj/Debug/net6.0/scopedcss/projectbundle/CashControl.bundle.scp.css",
+      "PackagePath": "staticwebassets/CashControl.bundle.scp.css"
     },
     {
       "Id": "/Users/erlindzenelaj/Documents/GitHub/CashControl/CashControlBack/wwwroot/css/site.css",
@@ -245,20 +245,20 @@
       "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.map"
     },
     {
-      "Id": "obj/Debug/net6.0/staticwebassets/msbuild.CashControlBack.Microsoft.AspNetCore.StaticWebAssets.props",
+      "Id": "obj/Debug/net6.0/staticwebassets/msbuild.CashControl.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },
     {
-      "Id": "obj/Debug/net6.0/staticwebassets/msbuild.build.CashControlBack.props",
-      "PackagePath": "build\\CashControlBack.props"
+      "Id": "obj/Debug/net6.0/staticwebassets/msbuild.build.CashControl.props",
+      "PackagePath": "build\\CashControl.props"
     },
     {
-      "Id": "obj/Debug/net6.0/staticwebassets/msbuild.buildMultiTargeting.CashControlBack.props",
-      "PackagePath": "buildMultiTargeting\\CashControlBack.props"
+      "Id": "obj/Debug/net6.0/staticwebassets/msbuild.buildMultiTargeting.CashControl.props",
+      "PackagePath": "buildMultiTargeting\\CashControl.props"
     },
     {
-      "Id": "obj/Debug/net6.0/staticwebassets/msbuild.buildTransitive.CashControlBack.props",
-      "PackagePath": "buildTransitive\\CashControlBack.props"
+      "Id": "obj/Debug/net6.0/staticwebassets/msbuild.buildTransitive.CashControl.props",
+      "PackagePath": "buildTransitive\\CashControl.props"
     }
   ],
   "ElementsToRemove": []

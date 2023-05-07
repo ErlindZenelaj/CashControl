@@ -126,6 +126,7 @@ namespace CashControlBack.Areas.Identity.Pages.Account
                     var claims = new List<Claim>
                     {
                         new Claim("amr", "pwd"),
+                        //new Claim("EmployeeNumber", "1")
                     };
 
                     var roles = await _signInManager.UserManager.GetRolesAsync(user);
