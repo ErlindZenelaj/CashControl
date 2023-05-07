@@ -5,7 +5,7 @@ VisualStudioVersion = 25.0.1705.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashControlBack", "CashControlBack.csproj", "{2CF2F6CD-C335-4CB3-8F15-9DA0B1F4F038}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinancialApp", "..\..\FinancialApp\FinancialApp\FinancialApp.csproj", "{64656128-C063-4594-9913-828599580239}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashControlBack", "..\..\CashControlBack\CashControlBack\CashControlBack.csproj", "{64656128-C063-4594-9913-828599580239}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,6 +1,6 @@
 using System;
 
-namespace FinancialApp.Core.Repositories
+namespace CashControlBack.Core.Repositories
 {
 	public interface IUnitOfWork
 	{

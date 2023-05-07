@@ -1,4 +1,4 @@
-namespace FinancialApp.Core
+namespace CashControlBack.Core
 {
     public static class Constants
     {

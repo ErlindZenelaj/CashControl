@@ -1,8 +1,8 @@
-using FinancialApp.Core;
+using CashControlBack.Core;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FinancialApp.Controllers
+namespace CashControlBack.Controllers
 {
     public class RoleViewsController : Controller
     {

@@ -1,8 +1,8 @@
 using System;
-using FinancialApp.Areas.Identity.Data;
+using CashControlBack.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 
-namespace FinancialApp.Core.Repositories
+namespace CashControlBack.Core.Repositories
 {
 	public interface IRoleRepository
 	{

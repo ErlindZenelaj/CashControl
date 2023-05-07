@@ -5,16 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using FinancialApp.Areas.Identity.Data;
-using FinancialApp.Core.Repositories;
-using FinancialApp.Core.ViewModels;
+using CashControlBack.Areas.Identity.Data;
+using CashControlBack.Core.Repositories;
+using CashControlBack.Core.ViewModels;
 using Microsoft.AspNetCore.Authorization;
-using static FinancialApp.Core.Constants;
+using static CashControlBack.Core.Constants;
 
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace FinancialApp.Controllers
+namespace CashControlBack.Controllers
 {
     
     public class UserController : Controller
