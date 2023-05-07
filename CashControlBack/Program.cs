@@ -1,13 +1,14 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using CashControlBack.Areas.Identity.Data;
-using Microsoft.VisualBasic;
 using CashControlBack.Core;
-using Constants = CashControlBack.Core.Constants;
+using CashControlBack.Core.Repositories;
+using CashControlBack.Repositories;
 using CashControlBack.Models;
 
+
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("ApplicationDbContextConnection") ?? throw new InvalidOperationException("Connection string 'ApplicationDbContextConnection' not found.");
+var connectionString = builder.Configuration.GetConnectionString("ApplicationDbContextConnection");
 
 
 
@@ -25,30 +26,36 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDb>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection")));
 
+#region Authorization
+
 AddAuthorizationPolicies();
+
+#endregion
 
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
 }
+
+app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-app.UseAuthentication();;
-
+app.UseAuthentication();
 app.UseAuthorization();
-
-
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-app.MapRazorPages(); 
+app.MapRazorPages();
 
 app.Run();
 
@@ -62,16 +69,11 @@ void AddAuthorizationPolicies()
 
     builder.Services.AddAuthorization(options =>
     {
-        options.AddPolicy(CashControlBack.Core.Constants.Policies.RequireAdmin, policy => policy.RequireRole(Constants.Roles.Administrator));
-        options.AddPolicy(CashControlBack.Core.Constants.Policies.RequireCompany, policy => policy.RequireRole(Constants.Roles.Company));
+        options.AddPolicy(Constants.Policies.RequireAdmin, policy => policy.RequireRole(Constants.Roles.Administrator));
+        options.AddPolicy(Constants.Policies.RequireCompany, policy => policy.RequireRole(Constants.Roles.Company));
 
 
     });
 
-
-
-
 }
-
-
 
