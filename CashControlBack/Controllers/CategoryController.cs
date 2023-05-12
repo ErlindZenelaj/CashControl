@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace FinancialApp.Controllers
+namespace CashControlBack.Controllers
 {
     public class CategoryController : Controller
     {

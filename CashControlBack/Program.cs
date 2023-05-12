@@ -7,6 +7,7 @@ using CashControlBack.Repositories;
 using CashControlBack.Models;
 
 
+
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("ApplicationDbContextConnection");
 

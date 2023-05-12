@@ -20,17 +20,17 @@ namespace CashControlBack.Models
         [StringLength(75)]
         public string Description { get; set; }
 
-        
+
         [ForeignKey("Currencies")]
         public int? ExchangeCurrencyId { get; set; }
 
-       public virtual Currency Currencies { get; set; }
+        public virtual Currency Currencies { get; set; }
 
         [Column(TypeName = "smallmoney")]
         [Required]
         public decimal ExchangeRate { get; set; }
 
     }
-        
+
 }
 

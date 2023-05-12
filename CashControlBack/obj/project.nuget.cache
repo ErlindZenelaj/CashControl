@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "ELERejrPJaOato9R2l/gn2O9jvxbImmixRRI5zRWya2qYiJMq7oDOF20IcQewbB3C7aJSEpLHqIvDoe6kazImA==",
+  "dgSpecHash": "5ha8fw1mQOljjg7/iXrGygDCiOWt6jlriDayss+ql61dGw1kwDEp2OKlmOQWE2kgMcwIS0mEVvzzgXS5ilBsvg==",
   "success": true,
   "projectFilePath": "/Users/erlindzenelaj/Documents/GitHub/CashControl/CashControlBack/CashControl.csproj",
   "expectedPackageFiles": [
+    "/Users/erlindzenelaj/.nuget/packages/bootstrap/5.2.3/bootstrap.5.2.3.nupkg.sha512",
     "/Users/erlindzenelaj/.nuget/packages/humanizer.core/2.8.26/humanizer.core.2.8.26.nupkg.sha512",
     "/Users/erlindzenelaj/.nuget/packages/messagepack/2.1.152/messagepack.2.1.152.nupkg.sha512",
     "/Users/erlindzenelaj/.nuget/packages/messagepack.annotations/2.1.152/messagepack.annotations.2.1.152.nupkg.sha512",
@@ -103,8 +104,8 @@
     "/Users/erlindzenelaj/.nuget/packages/runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl/4.3.0/runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "/Users/erlindzenelaj/.nuget/packages/runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl/4.3.0/runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "/Users/erlindzenelaj/.nuget/packages/runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl/4.3.0/runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
-    "/Users/erlindzenelaj/.nuget/packages/syncfusion.ej2.aspnet.core/21.2.3/syncfusion.ej2.aspnet.core.21.2.3.nupkg.sha512",
-    "/Users/erlindzenelaj/.nuget/packages/syncfusion.licensing/21.2.3/syncfusion.licensing.21.2.3.nupkg.sha512",
+    "/Users/erlindzenelaj/.nuget/packages/syncfusion.ej2.aspnet.core/20.4.0.48/syncfusion.ej2.aspnet.core.20.4.0.48.nupkg.sha512",
+    "/Users/erlindzenelaj/.nuget/packages/syncfusion.licensing/20.4.0.48/syncfusion.licensing.20.4.0.48.nupkg.sha512",
     "/Users/erlindzenelaj/.nuget/packages/system.appcontext/4.3.0/system.appcontext.4.3.0.nupkg.sha512",
     "/Users/erlindzenelaj/.nuget/packages/system.buffers/4.3.0/system.buffers.4.3.0.nupkg.sha512",
     "/Users/erlindzenelaj/.nuget/packages/system.collections/4.3.0/system.collections.4.3.0.nupkg.sha512",

@@ -13,12 +13,14 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.15",
           "Microsoft.EntityFrameworkCore.Tools": "6.0.15",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "6.0.13",
-          "Syncfusion.EJ2.AspNet.Core": "21.2.3"
+          "Syncfusion.EJ2.AspNet.Core": "20.4.0.48",
+          "bootstrap": "5.2.3"
         },
         "runtime": {
           "CashControl.dll": {}
         }
       },
+      "bootstrap/5.2.3": {},
       "Humanizer.Core/2.8.26": {
         "runtime": {
           "lib/netstandard2.0/Humanizer.dll": {
@@ -1531,23 +1533,23 @@
       "runtime.ubuntu.14.04-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
       "runtime.ubuntu.16.04-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
       "runtime.ubuntu.16.10-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
-      "Syncfusion.EJ2.AspNet.Core/21.2.3": {
+      "Syncfusion.EJ2.AspNet.Core/20.4.0.48": {
         "dependencies": {
           "Newtonsoft.Json": "13.0.2",
-          "Syncfusion.Licensing": "21.2.3"
+          "Syncfusion.Licensing": "20.4.0.48"
         },
         "runtime": {
           "lib/netstandard2.1/Syncfusion.EJ2.dll": {
-            "assemblyVersion": "21.2.3.0",
-            "fileVersion": "21.2.3.0"
+            "assemblyVersion": "20.4.0.48",
+            "fileVersion": "20.4.0.48"
           }
         }
       },
-      "Syncfusion.Licensing/21.2.3": {
+      "Syncfusion.Licensing/20.4.0.48": {
         "runtime": {
           "lib/net6.0/Syncfusion.Licensing.dll": {
-            "assemblyVersion": "21.2.3.0",
-            "fileVersion": "21.2.3.0"
+            "assemblyVersion": "20.4.0.48",
+            "fileVersion": "20.4.0.48"
           }
         }
       },
@@ -2371,6 +2373,13 @@
       "serviceable": false,
       "sha512": ""
     },
+    "bootstrap/5.2.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-tZZrH4HdqBr/oeUlGoc2KliYlwXeN3qyhKgc1B5dc585+lnMkcD4A5yIX2NmNoXCCagQQiQGKn7A97sWoo2AOw==",
+      "path": "bootstrap/5.2.3",
+      "hashPath": "bootstrap.5.2.3.nupkg.sha512"
+    },
     "Humanizer.Core/2.8.26": {
       "type": "package",
       "serviceable": true,
@@ -3064,19 +3073,19 @@
       "path": "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl/4.3.0",
       "hashPath": "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512"
     },
-    "Syncfusion.EJ2.AspNet.Core/21.2.3": {
+    "Syncfusion.EJ2.AspNet.Core/20.4.0.48": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-5kLJDMrlYTOn5IkqWee0GZuaoGnvLkTD5yWAAib6w16sQdDDHqN77JuMDUT6TlLk89wNqVZWtQ3qo/mWeFvFWw==",
-      "path": "syncfusion.ej2.aspnet.core/21.2.3",
-      "hashPath": "syncfusion.ej2.aspnet.core.21.2.3.nupkg.sha512"
+      "sha512": "sha512-6aVv+sO7h3eWjxxCK5hKi57Zsn06L9pPmCQAJCWlEMcvbP1CnA0OGefa3Kbj2Bgcqzfg37tpW/FHg0B8VcmD0g==",
+      "path": "syncfusion.ej2.aspnet.core/20.4.0.48",
+      "hashPath": "syncfusion.ej2.aspnet.core.20.4.0.48.nupkg.sha512"
     },
-    "Syncfusion.Licensing/21.2.3": {
+    "Syncfusion.Licensing/20.4.0.48": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-9ZS+tE48qD3jtE0brkf0ZA5JnvxHOxll6IwJb7kNoJuJPuOUwLUGSmJ82fQ5VFRO5VtwONvKHDnvdJ5nAzeXKw==",
-      "path": "syncfusion.licensing/21.2.3",
-      "hashPath": "syncfusion.licensing.21.2.3.nupkg.sha512"
+      "sha512": "sha512-o9VL4Aeyf7SWgEB0wLxYWLnRCfPZ7AWivdfyV73hZSdSy57nHPoMOQFx8O9rA7vbtM35fWwGhxcfpind3puwAA==",
+      "path": "syncfusion.licensing/20.4.0.48",
+      "hashPath": "syncfusion.licensing.20.4.0.48.nupkg.sha512"
     },
     "System.AppContext/4.3.0": {
       "type": "package",
