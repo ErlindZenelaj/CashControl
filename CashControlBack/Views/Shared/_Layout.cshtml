@@ -70,7 +70,7 @@
                     }
 
 
-                    @if (SignInManager.IsSignedIn(User))
+                    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Administrator"))
                     {
                         <li>
                             <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">
@@ -78,9 +78,6 @@
                                 Users
                             </a>
                         </li>
-
-
-                        
 
                     }
 

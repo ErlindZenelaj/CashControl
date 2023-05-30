@@ -34,6 +34,7 @@ AddAuthorizationPolicies();
 
 #endregion
 
+AddScoped();
 
 var app = builder.Build();
 
@@ -76,6 +77,14 @@ void AddAuthorizationPolicies()
 
 
     });
+
+}
+
+void AddScoped()
+{
+    builder.Services.AddScoped<IUserRepository, UserRepository>();
+    builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+    builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 }
 
