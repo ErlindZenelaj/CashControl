@@ -1,60 +1,28 @@
 ﻿<Properties StartupConfiguration="{2CF2F6CD-C335-4CB3-8F15-9DA0B1F4F038}|CashControlBack">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Views/Shared/_Layout.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Program.cs">
     <Files>
-      <File FileName="Views/Shared/_Layout.cshtml" Line="37" Column="51" />
       <File FileName="appsettings.json" />
-      <File FileName="Controllers/UserController.cs" />
-      <File FileName="Core/ViewModel/EditUserViewModel.cs" />
-      <File FileName="Views/User/Edit.cshtml" />
-      <File FileName="Views/User/Index.cshtml" />
+      <File FileName="Models/ApplicationDb.cs" />
+      <File FileName="Models/Category.cs" />
+      <File FileName="Migrations/20230507191844_SeedRoles.cs" />
+      <File FileName="Migrations/20230505163139_InitApplicationUser.cs" />
+      <File FileName="Program.cs" Line="57" Column="7" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="CashControlBack" expanded="True">
-            <Node name="CashControl" expanded="True">
-              <Node name="Controllers" expanded="True" />
-              <Node name="Core" expanded="True">
-                <Node name="ViewModel" expanded="True" />
-              </Node>
-              <Node name="Views" expanded="True">
-                <Node name="Shared" expanded="True">
-                  <Node name="_Layout.cshtml" selected="True" />
-                </Node>
-                <Node name="Transaction" expanded="True" />
-                <Node name="User" expanded="True" />
-              </Node>
-              <Node name="wwwroot" expanded="True">
-                <Node name="css" expanded="True" />
-              </Node>
-            </Node>
-            <Node name="FinancialApp" expanded="True">
-              <Node name="Areas" expanded="True">
-                <Node name="Identity" expanded="True" />
-              </Node>
-              <Node name="Controllers" expanded="True" />
-              <Node name="Core" expanded="True">
-                <Node name="ViewModel" expanded="True" />
-              </Node>
-              <Node name="Models" expanded="True" />
-              <Node name="Views" expanded="True">
-                <Node name="Dashboard" expanded="True" />
-                <Node name="User" expanded="True" />
-              </Node>
-              <Node name="wwwroot" expanded="True">
-                <Node name="css" expanded="True" />
-              </Node>
-            </Node>
+          <Node name="CashControlBack" expanded="True" selected="True">
+            <Node name="CashControl" expanded="True" />
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.ItemProperties.CashControl PreferredExecutionTarget="/Applications/Google Chrome.app" />
 </Properties>
