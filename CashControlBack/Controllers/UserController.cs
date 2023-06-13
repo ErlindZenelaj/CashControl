@@ -16,7 +16,8 @@ using static CashControlBack.Core.Constants;
 
 namespace CashControlBack.Controllers
 {
-
+    [ApiController]
+    [Route("api/users")]
     public class UserController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -152,8 +153,78 @@ namespace CashControlBack.Controllers
             return RedirectToAction("Edit", new { id = user.Id });
         }
 
+        [HttpGet]
+        [Authorize(Roles = "Administrator")]
+        public IActionResult GetUsers()
+        {
+            var users = _unitOfWork.User.GetUsers();
+            return Ok(users);
+        }
+
+        [HttpGet("{id}")]
+        [Authorize(Roles = "Administrator")]
+        public IActionResult GetUser(string id)
+        {
+            var user = _unitOfWork.User.GetUser(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(user);
+        }
+
+        [HttpPut("{id}")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> UpdateUser(string id, EditUserViewModel data)
+        {
+            var user = _unitOfWork.User.GetUser(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var userRolesInDb = await _signInManager.UserManager.GetRolesAsync(user);
+
+            // Your role update logic here
+
+            user.FirstName = data.User.FirstName;
+            user.LastName = data.User.LastName;
+            user.Email = data.User.Email;
+
+            _unitOfWork.User.UpdateUser(user);
+
+            return Ok(user);
+        }
+
+        [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> DeleteUserApi(string id)
+        {
+            var user = await _signInManager.UserManager.FindByIdAsync(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var result = await _signInManager.UserManager.DeleteAsync(user);
+
+            if (result.Succeeded)
+            {
+                return NoContent();
+            }
+
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError("", error.Description);
+            }
+
+            return BadRequest(ModelState);
+        }
 
 
     }
 }
-
