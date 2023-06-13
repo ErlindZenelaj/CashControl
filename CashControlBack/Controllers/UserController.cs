@@ -2,229 +2,58 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+using CashControl.Context;
+using CashControl.Models;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using CashControlBack.Areas.Identity.Data;
-using CashControlBack.Core.Repositories;
-using CashControlBack.Core.ViewModels;
-using Microsoft.AspNetCore.Authorization;
-using static CashControlBack.Core.Constants;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
-namespace CashControlBack.Controllers
+namespace CashControl.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("api/users")]
-    public class UserController : Controller
+    public class UserController : ControllerBase
     {
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly AppDbContext _authContext;
 
-        public UserController(IUnitOfWork unitOfWork, SignInManager<ApplicationUser> signInManager)
+        public UserController(AppDbContext appDbContext)
         {
-            _unitOfWork = unitOfWork;
-            _signInManager = signInManager;
+            _authContext = appDbContext;
         }
 
-
-
-        [Authorize(Roles = "Administrator")]
-        public IActionResult Index()
+        [HttpPost("authenticate")]
+        public async Task<IActionResult> Authenticate([FromBody] User userObj)
         {
-            var users = _unitOfWork.User.GetUsers();
-            return View(users);
-        }
+            if (userObj == null)
+                return BadRequest();
 
-        public async Task<IActionResult> Edit(string id)
-        {
-            var user = _unitOfWork.User.GetUser(id);
-            var roles = _unitOfWork.Role.GetRoles();
-
-            var userRoles = await _signInManager.UserManager.GetRolesAsync(user);
-
-
-            var roleItems = roles.Select(role =>
-                new SelectListItem(
-                    role.Name,
-                    role.Id,
-                    userRoles.Any(ur => ur.Contains(role.Name)))).ToList();
-
-
-
-            var vm = new EditUserViewModel
-            {
-                User = user,
-                Roles = roleItems
-            };
-
-            return View(vm);
-        }
-
-        public async Task<IActionResult> DeleteUser(string id)
-        {
-            var user = await _signInManager.UserManager.FindByIdAsync(id);
-
+            var user = await _authContext.Users
+                .FirstOrDefaultAsync(x => x.Username == userObj.Username && x.Password == userObj.Password);
             if (user == null)
+                return NotFound(new { Message = "User not found!" });
+
+            return Ok(new
             {
-                ViewBag.ErrorMessage = $"User with Id = {id} cannot be found";
-                return View("NotFound");
-            }
-            else
-            {
-                var result = await _signInManager.UserManager.DeleteAsync(user);
-
-                if (result.Succeeded)
-                {
-                    return RedirectToAction("");
-                }
-
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError("", error.Description);
-                }
-
-                return View("");
-            }
-
-
+                Message = "Login Success!"
+            });
         }
 
-
-
-
-
-        [HttpPost]
-
-        public async Task<IActionResult> OnPostAsync(EditUserViewModel data)
+        [HttpPost("register")]
+        public async Task<IActionResult> AddUser([FromBody] User userObj)
         {
-            var user = _unitOfWork.User.GetUser(data.User.Id);
-            if (user == null)
+            if (userObj == null)
+                return BadRequest();
+
+            await _authContext.AddAsync(userObj);
+            await _authContext.SaveChangesAsync();
+
+            return Ok(new
             {
-                return NotFound();
-            }
-            var userRolesInDb = await _signInManager.UserManager.GetRolesAsync(user);
-
-            //Loop through the roles in ViewModel
-            //Check if the Role is Assigned In DB
-            //If Assigned -> Do Nothing
-            //If Not Assigned -> Add Role
-
-            var rolesToAdd = new List<string>();
-            var rolesToDelete = new List<string>();
-
-            foreach (var role in data.Roles)
-            {
-                var assignedInDb = userRolesInDb.FirstOrDefault(ur => ur == role.Text);
-                if (role.Selected)
-                {
-                    if (assignedInDb == null)
-                    {
-                        rolesToAdd.Add(role.Text);
-                    }
-                }
-                else
-                {
-                    if (assignedInDb != null)
-                    {
-                        rolesToDelete.Add(role.Text);
-                    }
-                }
-            }
-
-            if (rolesToAdd.Any())
-            {
-                await _signInManager.UserManager.AddToRolesAsync(user, rolesToAdd);
-            }
-
-            if (rolesToDelete.Any())
-            {
-                await _signInManager.UserManager.RemoveFromRolesAsync(user, rolesToDelete);
-            }
-
-            user.FirstName = data.User.FirstName;
-            user.LastName = data.User.LastName;
-            user.Email = data.User.Email;
-
-            _unitOfWork.User.UpdateUser(user);
-
-            return RedirectToAction("Edit", new { id = user.Id });
+                Message = "User Registered!"
+            });
         }
-
-        [HttpGet]
-        [Authorize(Roles = "Administrator")]
-        public IActionResult GetUsers()
-        {
-            var users = _unitOfWork.User.GetUsers();
-            return Ok(users);
-        }
-
-        [HttpGet("{id}")]
-        [Authorize(Roles = "Administrator")]
-        public IActionResult GetUser(string id)
-        {
-            var user = _unitOfWork.User.GetUser(id);
-
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(user);
-        }
-
-        [HttpPut("{id}")]
-        [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> UpdateUser(string id, EditUserViewModel data)
-        {
-            var user = _unitOfWork.User.GetUser(id);
-
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            var userRolesInDb = await _signInManager.UserManager.GetRolesAsync(user);
-
-            // Your role update logic here
-
-            user.FirstName = data.User.FirstName;
-            user.LastName = data.User.LastName;
-            user.Email = data.User.Email;
-
-            _unitOfWork.User.UpdateUser(user);
-
-            return Ok(user);
-        }
-
-        [HttpDelete("{id}")]
-        [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> DeleteUserApi(string id)
-        {
-            var user = await _signInManager.UserManager.FindByIdAsync(id);
-
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            var result = await _signInManager.UserManager.DeleteAsync(user);
-
-            if (result.Succeeded)
-            {
-                return NoContent();
-            }
-
-            foreach (var error in result.Errors)
-            {
-                ModelState.AddModelError("", error.Description);
-            }
-
-            return BadRequest(ModelState);
-        }
-
 
     }
 }
