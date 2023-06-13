@@ -24,6 +24,18 @@ Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Mgo+DSMBMAY9C3t2
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddCors(option =>
+{
+    option.AddPolicy("MyPolicy", builder =>
+    {
+        builder.AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader();
+
+    });
+
+}
+    );
 
 //DI
 builder.Services.AddDbContext<ApplicationDb>(options =>
@@ -52,9 +64,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
 app.UseCors("MyPolicy");
-
 app.UseAuthentication();
  
 app.UseAuthorization();
