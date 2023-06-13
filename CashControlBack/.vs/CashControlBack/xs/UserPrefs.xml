@@ -1,19 +1,14 @@
 ﻿<Properties StartupConfiguration="{2CF2F6CD-C335-4CB3-8F15-9DA0B1F4F038}|CashControlBack">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.CashControl PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workbench ActiveDocument="appsettings.json">
     <Files>
-      <File FileName="appsettings.json" Line="14" Column="3" />
-      <File FileName="Models/Category.cs" Line="1" Column="1" />
-      <File FileName="Migrations/20230507191844_SeedRoles.cs" />
-      <File FileName="Migrations/20230505163139_InitApplicationUser.cs" />
-      <File FileName="Program.cs" Line="47" Column="68" />
-      <File FileName="Models/User.cs" Line="23" Column="2" />
-      <File FileName="Context/AppDbContext.cs" Line="19" Column="6" />
+      <File FileName="appsettings.json" Line="14" Column="2" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -24,6 +19,7 @@
                 <Node name="PackageDependencies" expanded="True" />
               </Node>
               <Node name="Context" expanded="True" />
+              <Node name="Migrations" expanded="True" />
               <Node name="Models" expanded="True" />
               <Node name="appsettings.json" selected="True" />
             </Node>
@@ -32,5 +28,4 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.CashControl PreferredExecutionTarget="/Applications/Google Chrome.app" />
 </Properties>
