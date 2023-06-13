@@ -5,8 +5,7 @@ using CashControlBack.Core;
 using CashControlBack.Core.Repositories;
 using CashControlBack.Repositories;
 using CashControlBack.Models;
-
-
+using CashControl.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("ApplicationDbContextConnection");
@@ -40,6 +39,12 @@ builder.Services.AddCors(option =>
 //DI
 builder.Services.AddDbContext<ApplicationDb>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection")));
+
+//dbUser
+builder.Services.AddDbContext<AppDbContext>(option =>
+{
+    option.UseSqlServer(builder.Configuration.GetConnectionString("SqlServerConnStr"));
+});
 
 #region Authorization
 
