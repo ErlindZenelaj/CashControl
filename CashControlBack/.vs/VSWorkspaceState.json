@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Controllers"
+    "\\Controllers",
+    "\\Migrations",
+    "\\Models"
   ],
   "SelectedNode": "\\CashControlBack.sln",
   "PreviewInSolutionExplorer": false
