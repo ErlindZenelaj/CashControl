@@ -26,6 +26,7 @@ namespace CashControl.Controllers
         [HttpPost("authenticate")]
         public async Task<IActionResult> Authenticate([FromBody] User userObj)
         {
+
             if (userObj == null)
                 return BadRequest();
 
