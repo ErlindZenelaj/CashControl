@@ -24,6 +24,19 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddCors(option =>
+{
+    option.AddPolicy("MyPolicy", builder =>
+    {
+        builder.AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader();
+
+    });
+
+}
+    );
+
 //DI
 builder.Services.AddDbContext<ApplicationDb>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection")));
@@ -51,6 +64,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseCors("MyPolicy");
 app.UseAuthentication();
 app.UseAuthorization();
 
