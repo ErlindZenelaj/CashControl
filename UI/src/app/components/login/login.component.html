@@ -12,26 +12,26 @@
                 <div
                   class="input-field"
                   [class.error]="
-                    loginForm.controls['email'].dirty &&
-                    loginForm.hasError('required', 'email')
+                    loginForm.controls['username'].dirty &&
+                    loginForm.hasError('required', 'username')
                   "
                 >
                   <span class="fa fa-user p-2"></span>
                   <input
-                    formControlName="email"
+                    formControlName="username"
                     type="text"
-                    placeholder="email"
+                    placeholder="username"
                     required
                   />
                 </div>
               </div>
               <small
                 *ngIf="
-                  loginForm.controls['email'].dirty &&
-                  loginForm.hasError('required', 'email')
+                  loginForm.controls['username'].dirty &&
+                  loginForm.hasError('required', 'username')
                 "
                 class="text-danger"
-                >*email is required*</small
+                >*username is required*</small
               >
               <div class="form-group pt-3">
                 <div
