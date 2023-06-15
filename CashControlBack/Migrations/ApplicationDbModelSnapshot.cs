@@ -31,7 +31,6 @@ namespace CashControl.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"), 1L, 1);
 
                     b.Property<string>("Icon")
-                        .IsRequired()
                         .HasColumnType("nvarchar(5)");
 
                     b.Property<string>("Title")
@@ -39,7 +38,6 @@ namespace CashControl.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Type")
-                        .IsRequired()
                         .HasColumnType("nvarchar(10)");
 
                     b.HasKey("CategoryId");
