@@ -42,12 +42,12 @@ namespace CashControl.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> AddUser([FromBody] User userObj)
+        public async Task<IActionResult> RegisterUser([FromBody] User userObj)
         {
             if (userObj == null)
                 return BadRequest();
 
-            await _authContext.AddAsync(userObj);
+            await _authContext.Users.AddAsync(userObj);
             await _authContext.SaveChangesAsync();
 
             return Ok(new

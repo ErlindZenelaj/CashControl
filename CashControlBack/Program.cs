@@ -8,6 +8,17 @@ using CashControlBack.Models;
 using CashControl.Context;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(option =>
+{
+    option.AddPolicy("MyPolicy", builder =>
+    {
+        builder.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+        });
+});
+
 var connectionString = builder.Configuration.GetConnectionString("ApplicationDbContextConnection");
 
 Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Mgo+DSMBMAY9C3t2VVhkQlFacldJXGFWfVJpTGpQdk5xdV9DaVZUTWY/P1ZhSXxQdkdjXH5dcHJUR2BVU0I=");
@@ -23,18 +34,6 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddCors(option =>
-{
-    option.AddPolicy("MyPolicy", builder =>
-    {
-        builder.AllowAnyOrigin()
-        .AllowAnyMethod()
-        .AllowAnyHeader();
-
-    });
-
-}
-    );
 
 //DI
 builder.Services.AddDbContext<ApplicationDb>(options =>
@@ -45,6 +44,7 @@ builder.Services.AddDbContext<AppDbContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("SqlServerConnStr"));
 });
+
 
 #region Authorization
 
@@ -69,8 +69,11 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
 app.UseCors("MyPolicy");
+
 app.UseAuthentication();
+ 
 app.UseAuthorization();
 
 app.MapControllerRoute(
