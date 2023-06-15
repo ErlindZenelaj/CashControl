@@ -12,10 +12,15 @@ namespace CashControl.Context
 
         }
         public DbSet<User> Users { get; set; }
+        public DbSet<CompanyProduct> CompanyProducts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<User>().ToTable("users");
+             builder.Entity<CompanyProduct>(entity =>
+        {
+            entity.HasKey(p => p.ProductId);
+        });
         }
     }
 }
