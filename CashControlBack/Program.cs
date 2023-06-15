@@ -1,9 +1,5 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using CashControlBack.Areas.Identity.Data;
-using CashControlBack.Core;
-using CashControlBack.Core.Repositories;
-using CashControlBack.Repositories;
 using CashControlBack.Models;
 using CashControl.Context;
 
@@ -24,12 +20,6 @@ var connectionString = builder.Configuration.GetConnectionString("ApplicationDbC
 Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Mgo+DSMBMAY9C3t2VVhkQlFacldJXGFWfVJpTGpQdk5xdV9DaVZUTWY/P1ZhSXxQdkdjXH5dcHJUR2BVU0I=");
 
 
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
-
-builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
-    .AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -46,13 +36,6 @@ builder.Services.AddDbContext<AppDbContext>(option =>
 });
 
 
-#region Authorization
-
-AddAuthorizationPolicies();
-
-#endregion
-
-AddScoped();
 
 var app = builder.Build();
 
@@ -78,35 +61,13 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Dashboard}/{action=Index}/{id?}");
 
-app.MapRazorPages();
+
 
 app.Run();
 
 
-void AddAuthorizationPolicies()
-{
-    builder.Services.AddAuthorization(options =>
-    {
-        options.AddPolicy("EmployeeOnly", policy => policy.RequireClaim("EmployeeNumber"));
-    });
-
-    builder.Services.AddAuthorization(options =>
-    {
-        options.AddPolicy(Constants.Policies.RequireAdmin, policy => policy.RequireRole(Constants.Roles.Administrator));
-        options.AddPolicy(Constants.Policies.RequireCompany, policy => policy.RequireRole(Constants.Roles.Company));
 
 
-    });
-
-}
-
-void AddScoped()
-{
-    builder.Services.AddScoped<IUserRepository, UserRepository>();
-    builder.Services.AddScoped<IRoleRepository, RoleRepository>();
-    builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-
-}
 
