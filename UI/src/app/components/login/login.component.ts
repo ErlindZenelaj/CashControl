@@ -45,9 +45,9 @@ export class LoginComponent implements OnInit {
       console.log(this.loginForm.value);
 
       this.auth.login(this.loginForm.value).subscribe({
-        next: (res) => {
-          alert(res.message);
+        next: () => {
           this.loginForm.reset();
+          debugger;
           this.router.navigate(['dashboard']);
         },
         error: (err) => {
