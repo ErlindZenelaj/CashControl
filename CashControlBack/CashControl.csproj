@@ -22,20 +22,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Repositories\" />
     <None Remove="Views\Dashboard\" />
     <None Remove="Views\Transaction\" />
-    <None Remove="Core\ViewModel\" />
     <None Remove="Views\RoleViews\" />
     <None Remove="Context\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Repositories\" />
     <Folder Include="Views\Category\" />
-    <Folder Include="Views\User\" />
     <Folder Include="Views\Dashboard\" />
     <Folder Include="Views\Transaction\" />
-    <Folder Include="Core\ViewModel\" />
     <Folder Include="Views\RoleViews\" />
     <Folder Include="Context\" />
   </ItemGroup>
