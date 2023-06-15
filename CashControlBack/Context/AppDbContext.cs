@@ -1,5 +1,6 @@
 ﻿using System;
 using CashControl.Models;
+using CashControlBack.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace CashControl.Context
