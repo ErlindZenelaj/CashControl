@@ -43,8 +43,7 @@ export class SignupComponent implements OnInit {
   onSignup() {
     if (this.signUpForm.valid) {
       this.auth.signUp(this.signUpForm.value).subscribe({
-        next: (res) => {
-          alert(res.message);
+        next: () => {
           this.signUpForm.reset();
           this.router.navigate(['login']);
         },
