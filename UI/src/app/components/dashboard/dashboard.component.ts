@@ -13,11 +13,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     // Redirect to the desired URL
-    // window.location.href = 'http://localhost:5039/Dashboard';
-    this.api.getUsers()
-    .subscribe(res=>{
-      this.users = res;
-    })
+    window.location.href = 'http://localhost:5039/Dashboard';
   }
 
   logout(){
