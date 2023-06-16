@@ -4,8 +4,8 @@ import { CompanyProduct } from './companyProduct.model';
 
 @Component({
   selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css']
+  templateUrl: './company.component.html',
+  styleUrls: ['./company.component.css']
 })
 export class CompanyComponent implements OnInit {
   products: CompanyProduct[] = []; // Array to store the fetched products
@@ -52,16 +52,34 @@ export class CompanyComponent implements OnInit {
     });
   }
   
-  createProduct() {
+  // createProduct() {
+  //   this.companyApiRequest.createProduct(this.newProduct).subscribe({
+  //     next: (response: any) => {
+  //       const createdProduct: CompanyProduct = response as CompanyProduct;
+  //       this.products.push(createdProduct); // Add the newly created product to the list
+  //       this.clearNewProductForm(); // Clear the form fields
+  //       this.calculateProfit(createdProduct); // Recalculate profits
+  //       this.showAddProductForm = false; // Hide the add product form
+  //     },
+  //     error: (error) => {
+  //       console.error(error);
+  //     }
+  //   });
+  // }
+  addProduct() {
+    // Validate the new product data
+    if (!this.newProduct.productName || this.newProduct.productQuantity <= 0 || this.newProduct.productRemainings < 0 || this.newProduct.sellingPrice <= 0) {
+      // Display an error message or handle the invalid data appropriately
+      return;
+    }
+  
+    // Make the API request to create the product
     this.companyApiRequest.createProduct(this.newProduct).subscribe({
       next: (response: any) => {
         const createdProduct: CompanyProduct = response as CompanyProduct;
         this.products.push(createdProduct); // Add the newly created product to the list
         this.clearNewProductForm(); // Clear the form fields
-  
-        // Calculate profit for the newly created product
-        createdProduct.profit = this.calculateProfit(createdProduct);
-  
+        this.calculateProfit(createdProduct); // Recalculate profits
         this.showAddProductForm = false; // Hide the add product form
       },
       error: (error) => {
@@ -69,6 +87,7 @@ export class CompanyComponent implements OnInit {
       }
     });
   }
+  
   
   
   updateProduct(id: number, product: CompanyProduct) {

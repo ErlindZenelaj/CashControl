@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CompanyApiRequest } from './services/CompanyApiRequest.service';
 import { CompanyComponent } from './company/company.component';
+import { FormsModule } from '@angular/forms'; // Import the FormsModule
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, SignupComponent, DashboardComponent, CompanyComponent],
@@ -18,8 +19,9 @@ import { CompanyComponent } from './company/company.component';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FormsModule, // Add the FormsModule to the imports array
   ],
-  providers: [ CompanyApiRequest],
+  providers: [CompanyApiRequest],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
