@@ -24,7 +24,7 @@ namespace CashControl.Controllers
             _authContext = appDbContext;
         }
 
-        [HttpPost("authenticate")]
+        [HttpPost("companyAuthenticate")]
         public async Task<IActionResult> Authenticate([FromBody] Company companyObj)
         {
             if (companyObj == null)
@@ -46,7 +46,7 @@ namespace CashControl.Controllers
             });
         }
 
-        [HttpPost("register")]
+        [HttpPost("companyRegister")]
         public async Task<IActionResult> RegisterCompany([FromBody] Company companyObj)
         {
             if (companyObj == null)

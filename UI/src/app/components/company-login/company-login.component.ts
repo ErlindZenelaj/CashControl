@@ -11,14 +11,14 @@ import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  templateUrl: './company-login.component.html',
+  styleUrls: ['./company-login.component.css'],
 })
-export class LoginComponent implements OnInit {
+export class CompanyLoginComponent implements OnInit {
   type: string = 'password';
   isText: boolean = false;
   eyeIcon: string = 'fa-eye-slash';
-  loginForm!: FormGroup;
+  companyLoginForm!: FormGroup;
   message: string = 'message';
   constructor(
     private fb: FormBuilder,
@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loginForm = this.fb.group({
+    this.companyLoginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
     });
@@ -41,21 +41,21 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    if (this.loginForm.valid) {
-      console.log(this.loginForm.value);
+    if (this.companyLoginForm.valid) {
+      console.log(this.companyLoginForm.value);
 
-      this.auth.login(this.loginForm.value).subscribe({
+      this.auth.companyLogin(this.companyLoginForm.value).subscribe({
         next: () => {
-          this.loginForm.reset();
+          this.companyLoginForm.reset();
 
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['company']);
         },
         error: (err) => {
           alert(err?.error.message);
         },
       });
     } else {
-      validateAllForm.validateAllFormFields(this.loginForm);
+      validateAllForm.validateAllFormFields(this.companyLoginForm);
       alert('Your form is invalid');
       //throw error using toster with required fields
     }

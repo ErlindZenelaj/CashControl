@@ -10,10 +10,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CompanyApiRequest } from './services/CompanyApiRequest.service';
 import { CompanyComponent } from './company/company.component';
-import { FormsModule } from '@angular/forms'; // Import the FormsModule
+import { FormsModule } from '@angular/forms';
+import { CompanyLoginComponent } from './components/company-login/company-login.component';
+import { CompanySignupComponent } from './components/company-signup/company-signup.component'; // Import the FormsModule
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, SignupComponent, DashboardComponent, CompanyComponent],
+  declarations: [AppComponent, LoginComponent, SignupComponent, DashboardComponent, CompanyComponent, CompanyLoginComponent, CompanySignupComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
