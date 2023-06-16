@@ -30,7 +30,7 @@ export class CompanyComponent implements OnInit {
     this.companyApiRequest.getAllProducts().subscribe({
       next: (response: any) => {
         this.products = response as CompanyProduct[];
-  
+
         // Initialize the isEditing property to false for each product
         this.products.forEach((product: CompanyProduct) => {
           product.isEditing = false;
@@ -42,7 +42,7 @@ export class CompanyComponent implements OnInit {
       }
     });
   }
-  
+
 
   addProduct() {
     // Validate the new product data
@@ -50,7 +50,7 @@ export class CompanyComponent implements OnInit {
       // Display an error message or handle the invalid data appropriately
       return;
     }
-  
+
     // Make the API request to create the product
     this.companyApiRequest.createProduct(this.newProduct).subscribe({
       next: (response: any) => {
@@ -69,13 +69,18 @@ export class CompanyComponent implements OnInit {
   toggleEditProduct(product: CompanyProduct) {
     product.isEditing = !product.isEditing;
   }
-  
+
 
   updateProduct(id: number, product: CompanyProduct) {
     // Update the product
     this.companyApiRequest.updateProduct(id, product).subscribe({
       next: (response: any) => {
         const updatedProduct: CompanyProduct = response as CompanyProduct;
+        // Find the updated product in the products array and update it
+        const index = this.products.findIndex(p => p.productId === updatedProduct.productId);
+        if (index !== -1) {
+          this.products[index] = updatedProduct;
+        }
         console.log(updatedProduct);
         // Handle the updated product as needed
       },
@@ -89,20 +94,26 @@ export class CompanyComponent implements OnInit {
   }
   
   deleteProduct(id: number) {
-    this.companyApiRequest.deleteProduct(id).subscribe({
-      next: () => {
-        console.log('Product deleted successfully');
-        // Perform any necessary actions after deletion
-      },
-      error: (error) => {
-        this.error = 'Failed to delete the product. Please try again later.';
-        console.error(error);
-      }
-    });
+    // Display a confirmation dialog to confirm deletion
+    const confirmDelete = confirm("Are you sure you want to delete this product?");
   
-    this.calculateTotalProfit(); // Recalculate the total profit
+    if (confirmDelete) {
+      // Make the API request to delete the product
+      this.companyApiRequest.deleteProduct(id).subscribe({
+        next: () => {
+          console.log('Product deleted successfully');
+          // Remove the deleted product from the list
+          this.products = this.products.filter(product => product.productId !== id);
+        },
+        error: (error) => {
+          this.error = 'Failed to delete the product. Please try again later.';
+          console.error(error);
+        }
+      });
+  
+      this.calculateTotalProfit(); // Recalculate the total profit
+    }
   }
-  
 
   calculateProfit(product: CompanyProduct): number {
     return (product.productQuantity - product.productRemainings) * product.sellingPrice;
