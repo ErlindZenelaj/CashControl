@@ -6,6 +6,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CompanyComponent } from './company/company.component'; // Import the CompanyComponent
 import { CompanyLoginComponent } from './components/company-login/company-login.component';
 import { CompanySignupComponent } from './components/company-signup/company-signup.component';
+import { AuthGuard } from './guards/auth.guard';
+import { ConverterComponent } from './components/converter/converter.component';
 
 const routes: Routes = [
   {
@@ -35,6 +37,10 @@ const routes: Routes = [
   {
     path: 'company', // Define the path for the CompanyComponent
     component: CompanyComponent, // Assign the CompanyComponent as the component for this route
+  },
+  {
+    path: 'converter',
+    component: ConverterComponent,
   },
 ];
 

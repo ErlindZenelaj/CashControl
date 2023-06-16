@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -13,9 +12,10 @@ import { CompanyComponent } from './company/company.component';
 import { FormsModule } from '@angular/forms';
 import { CompanyLoginComponent } from './components/company-login/company-login.component';
 import { CompanySignupComponent } from './components/company-signup/company-signup.component'; // Import the FormsModule
+import { ConverterComponent } from './components/converter/converter.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, SignupComponent, DashboardComponent, CompanyComponent, CompanyLoginComponent, CompanySignupComponent],
+  declarations: [AppComponent, LoginComponent, SignupComponent, DashboardComponent, CompanyComponent, CompanyLoginComponent, CompanySignupComponent,ConverterComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
