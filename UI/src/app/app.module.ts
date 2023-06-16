@@ -13,9 +13,13 @@ import { FormsModule } from '@angular/forms';
 import { CompanyLoginComponent } from './components/company-login/company-login.component';
 import { CompanySignupComponent } from './components/company-signup/company-signup.component'; // Import the FormsModule
 import { ConverterComponent } from './components/converter/converter.component';
+import { HomeComponent } from './components/home/home.component';
+
 
 @NgModule({
+
   declarations: [AppComponent, LoginComponent, SignupComponent, DashboardComponent, CompanyComponent, CompanyLoginComponent, CompanySignupComponent,ConverterComponent],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
