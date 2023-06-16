@@ -1,0 +1,41 @@
+<div class="container">
+    <h1>Product Management</h1>
+  
+    <!-- Button to open the add product form -->
+    <button class="add-product-btn" (click)="openAddProductForm()">Add Product</button>
+  
+    <!-- Form to add a product -->
+    <div class="add-product-form" *ngIf="showAddProductForm">
+      <h2>Add Product</h2>
+      <form (submit)="addProduct()">
+        <label>
+          Product Name:
+          <input type="text" [(ngModel)]="newProduct.productName" required>
+        </label>
+        <label>
+          Product Quantity:
+          <input type="number" [(ngModel)]="newProduct.productQuantity" required>
+        </label>
+        <label>
+          Product Remainings:
+          <input type="number" [(ngModel)]="newProduct.productRemainings" required>
+        </label>
+        <label>
+          Selling Price:
+          <input type="number" [(ngModel)]="newProduct.sellingPrice" required>
+        </label>
+        <button type="submit">Add</button>
+      </form>
+    </div>
+  
+    <!-- Display the list of products as cards -->
+    <div class="product-cards">
+      <div class="product-card" *ngFor="let product of products">
+        <h3>{{ product.productName }}</h3>
+        <p>Quantity: {{ product.productQuantity }}</p>
+        <p>Remainings: {{ product.productRemainings }}</p>
+        <p>Profit: {{ calculateProfit(product) }}</p>
+      </div>
+    </div>
+  </div>
+  

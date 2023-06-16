@@ -8,16 +8,18 @@ import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { CompanyApiRequest } from './services/CompanyApiRequest.service';
+import { CompanyComponent } from './company/company.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, SignupComponent, DashboardComponent],
+  declarations: [AppComponent, LoginComponent, SignupComponent, DashboardComponent, CompanyComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [ CompanyApiRequest],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
