@@ -1,42 +1,38 @@
+body {
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
 
-    body{
-        background-color: #f5f5f5;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-       
-    }
-    
-    .page{
-        height: 100vh;
-        background-image: url('./istockphoto-504246822-612x612.jpg');
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        
-    }
+.page {
+    height: 100vh;
+    background-image: url('./currency-exchange-convert-dollar-to-euro-flat-vector-icon-illustration-simple-black-symbol-white-background-sign-design-234807306.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
 
-    .container{
-        display: flex;
-        justify-content: center; 
-        align-items: center;
-        height: 750px;
-        
-    }
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 750px;
+}
 
-    .main-container {
-        background-color: #ffffff;
-        padding: 40px;
-        border-radius: 8px;
-        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 500px;
-        height: 400px;
-    }
+.main-container {
+    background-color: rgba(255, 255, 255, 0.9); /* Use an rgba value with reduced opacity */
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3); /* Adjust the box-shadow's alpha value */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    height: 400px;
+}
 
     .selection-cont {
         display: flex;
