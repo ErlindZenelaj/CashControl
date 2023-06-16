@@ -5,4 +5,5 @@ export interface CompanyProduct {
   productRemainings: number;
   sellingPrice: number;
   profit: number;
+  isEditing?: boolean; // Added property
 }

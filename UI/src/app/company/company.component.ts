@@ -8,8 +8,8 @@ import { CompanyProduct } from './companyProduct.model';
   styleUrls: ['./company.component.css']
 })
 export class CompanyComponent implements OnInit {
-  products: CompanyProduct[] = []; // Array to store the fetched products
-  error: string = ''; // Variable to store error messages, if any
+  products: CompanyProduct[] = [];
+  error: string = '';
   newProduct: CompanyProduct = {
     productId: 0,
     productName: '',
@@ -17,8 +17,8 @@ export class CompanyComponent implements OnInit {
     productRemainings: 0,
     sellingPrice: 0,
     profit: 0
-  }; // Object to store the new product being added
-  showAddProductForm: boolean = false; // Flag to control the visibility of the add product form
+  };
+  showAddProductForm: boolean = false;
 
   constructor(private companyApiRequest: CompanyApiRequest) { }
 
@@ -30,6 +30,11 @@ export class CompanyComponent implements OnInit {
     this.companyApiRequest.getAllProducts().subscribe({
       next: (response: any) => {
         this.products = response as CompanyProduct[];
+  
+        // Initialize the isEditing property to false for each product
+        this.products.forEach((product: CompanyProduct) => {
+          product.isEditing = false;
+        });
       },
       error: (error) => {
         this.error = 'Failed to fetch products. Please try again later.';
@@ -38,37 +43,10 @@ export class CompanyComponent implements OnInit {
     });
   }
   
-  getProductById(id: number) {
-    this.companyApiRequest.getProductById(id).subscribe({
-      next: (response: any) => {
-        const product: CompanyProduct = response as CompanyProduct;
-        console.log(product);
-        // Handle the retrieved product as needed
-      },
-      error: (error) => {
-        this.error = 'Failed to fetch the product. Please try again later.';
-        console.error(error);
-      }
-    });
-  }
-  
-  // createProduct() {
-  //   this.companyApiRequest.createProduct(this.newProduct).subscribe({
-  //     next: (response: any) => {
-  //       const createdProduct: CompanyProduct = response as CompanyProduct;
-  //       this.products.push(createdProduct); // Add the newly created product to the list
-  //       this.clearNewProductForm(); // Clear the form fields
-  //       this.calculateProfit(createdProduct); // Recalculate profits
-  //       this.showAddProductForm = false; // Hide the add product form
-  //     },
-  //     error: (error) => {
-  //       console.error(error);
-  //     }
-  //   });
-  // }
+
   addProduct() {
     // Validate the new product data
-    if (!this.newProduct.productName || this.newProduct.productQuantity <= 0 || this.newProduct.productRemainings < 0 || this.newProduct.sellingPrice <= 0) {
+    if (!this.newProduct.productName || this.newProduct.sellingPrice <= 0) {
       // Display an error message or handle the invalid data appropriately
       return;
     }
@@ -87,10 +65,14 @@ export class CompanyComponent implements OnInit {
       }
     });
   }
+
+  toggleEditProduct(product: CompanyProduct) {
+    product.isEditing = !product.isEditing;
+  }
   
-  
-  
+
   updateProduct(id: number, product: CompanyProduct) {
+    // Update the product
     this.companyApiRequest.updateProduct(id, product).subscribe({
       next: (response: any) => {
         const updatedProduct: CompanyProduct = response as CompanyProduct;
@@ -102,6 +84,8 @@ export class CompanyComponent implements OnInit {
         console.error(error);
       }
     });
+  
+    this.calculateTotalProfit(); // Recalculate the total profit
   }
   
   deleteProduct(id: number) {
@@ -115,18 +99,27 @@ export class CompanyComponent implements OnInit {
         console.error(error);
       }
     });
+  
+    this.calculateTotalProfit(); // Recalculate the total profit
   }
   
+
   calculateProfit(product: CompanyProduct): number {
     return (product.productQuantity - product.productRemainings) * product.sellingPrice;
   }
-  
-  
-  
+
+  calculateTotalProfit(): number {
+    let totalProfit = 0;
+    for (const product of this.products) {
+      totalProfit += this.calculateProfit(product);
+    }
+    return totalProfit;
+  }
+
   openAddProductForm() {
     this.showAddProductForm = true;
   }
-  
+
   clearNewProductForm() {
     this.newProduct.productId = 0;
     this.newProduct.productName = '';

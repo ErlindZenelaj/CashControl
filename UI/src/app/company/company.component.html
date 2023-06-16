@@ -6,6 +6,63 @@
     Add Product
   </button>
 
+  <!-- Display the list of products as cards -->
+  <div class="product-cards">
+    <div class="product-card" *ngFor="let product of products">
+      <h3>{{ product.productName }}</h3>
+      <p>Price: {{ product.sellingPrice }} &euro;</p>
+      <ng-container *ngIf="!product.isEditing">
+        <label>
+          Quantity:
+          <input
+            type="number"
+            [(ngModel)]="product.productQuantity"
+            name="productQuantity"
+            (input)="calculateProfit(product)"
+          />
+        </label>
+        <label>
+          Remainings:
+          <input
+            type="number"
+            [(ngModel)]="product.productRemainings"
+            name="productRemainings"
+            (input)="calculateProfit(product)"
+          />
+        </label>
+        <p>Profit: {{ calculateProfit(product) }}</p>
+        <button (click)="toggleEditProduct(product)">Edit</button>
+      </ng-container>
+      <ng-container *ngIf="product.isEditing">
+        <form (submit)="updateProduct(product.productId, product)">
+          <label>
+            Name:
+            <input
+              type="text"
+              [(ngModel)]="product.productName"
+              name="productName"
+              required
+            />
+          </label>
+          <label>
+            Price:
+            <input
+              type="number"
+              [(ngModel)]="product.sellingPrice"
+              name="sellingPrice"
+              required
+            />
+          </label>
+          <button type="submit">Save</button>
+        </form>
+      </ng-container>
+      <button (click)="deleteProduct(product.productId)">Delete</button>
+    </div>
+  </div>
+  
+  
+  
+
   <!-- Form to add a product -->
   <div class="add-product-form" *ngIf="showAddProductForm">
     <h2>Add Product</h2>
@@ -16,24 +73,6 @@
           type="text"
           [(ngModel)]="newProduct.productName"
           name="productName"
-          required
-        />
-      </label>
-      <label>
-        Product Quantity:
-        <input
-          type="number"
-          [(ngModel)]="newProduct.productQuantity"
-          name="productQuantity"
-          required
-        />
-      </label>
-      <label>
-        Product Remainings:
-        <input
-          type="number"
-          [(ngModel)]="newProduct.productRemainings"
-          name="productRemainings"
           required
         />
       </label>
@@ -50,14 +89,4 @@
     </form>
   </div>
 
-  <!-- Display the list of products as cards -->
-  <div class="product-cards">
-    <div class="product-card" *ngFor="let product of products">
-      <h3>{{ product.productName }}</h3>
-      <p>Price:{{ product.sellingPrice }} &euro;</p>
-      <p>Quantity: {{ product.productQuantity }}</p>
-      <p>Remainings: {{ product.productRemainings }}</p>
-      <p>Profit: {{ calculateProfit(product) }}</p>
-    </div>
-  </div>
-</div>
+  <p>Total Profit: {{ calculateTotalProfit() }}</p></div>
