@@ -1,0 +1,23 @@
+<div style="display: flex; height: 750px; justify-content: center; align-items: center;">
+    <div class="main-container">
+        <div class="selection-cont">
+            <select #c1 name="" id="country1" (mouseleave)="changebase(c1.value)">
+                <option value="USD">US Dollar</option>
+                <option value="INT">Indian Rupee</option>
+                <option value="EUR">Euro</option>
+            </select>
+            <p>to</p>
+            <select #c2 name="" id="country1" (mouseleave)="tocountry(c2.value)">
+                <option value="USD">US Dollar</option>
+                <option value="INT">Indian Rupee</option>
+                <option value="EUR">Euro</option>
+            </select>
+        </div>
+        <button (click)="convert()">Submit</button>
+        <div class="result-container">
+            <p>1 {{base}}</p>
+            <p>=</p>
+            <p>{{result}} {{cont2}}</p>
+        </div>
+    </div>
+</div>
