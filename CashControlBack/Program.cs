@@ -5,6 +5,7 @@ using CashControl.Context;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using CashControl.UtilityService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,6 +40,7 @@ builder.Services.AddCors(option =>
 
 }
     );
+builder.Services.AddScoped<IEmailService, EmailService>();
 
 //DI
 builder.Services.AddDbContext<ApplicationDb>(options =>
