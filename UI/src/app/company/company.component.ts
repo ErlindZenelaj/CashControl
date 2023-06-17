@@ -23,7 +23,10 @@ export class CompanyComponent implements OnInit {
   salesRecords: SalesRecord[] = [];
   filterDate: string = '';
   filteredSalesRecords: SalesRecord[] = [];
+  isAddProductFormVisible: boolean = false;
+  isSalesTableVisible: boolean = false;
 
+  
   constructor(private companyApiRequest: CompanyApiRequest) { }
 
   ngOnInit() {
@@ -131,13 +134,12 @@ export class CompanyComponent implements OnInit {
     return totalProfit;
   }
 
-  openAddProductForm() {
-    this.showAddProductForm = true;
+  toggleSalesTable() {
+    this.isSalesTableVisible = !this.isSalesTableVisible;
   }
 
-  cancelAddProduct() {
-    this.showAddProductForm = false;
-    this.clearNewProductForm();
+  toggleAddProductForm() {
+    this.isAddProductFormVisible = !this.isAddProductFormVisible;
   }
 
   clearNewProductForm() {
@@ -170,50 +172,58 @@ export class CompanyComponent implements OnInit {
   }
 
   saveSalesRecords() {
+    // Add the total profit as a sales record
+    const totalProfitRecord: SalesRecord = {
+      date: new Date(),
+      productIndex: 0,
+      productName: 'Total Profit',
+      productQuantity: 0,
+      productRemainings: 0,
+      price: 0,
+      profit: this.calculateTotalProfit()
+    };
+  
+    this.salesRecords.push(totalProfitRecord);
+  
+    // Make the API request to save the sales records
     this.companyApiRequest.saveSalesRecords(this.salesRecords)
       .subscribe({
         next: response => {
           console.log('Sales records saved successfully');
-          console.log(this.salesRecords)
-          // Handle the successful save as needed
+          // Remove the total profit record after saving
+          this.salesRecords.pop();
         },
         error: error => {
           console.error(error);
-          // Handle the error case as needed
+          // Remove the total profit record if the saving fails
+          this.salesRecords.pop();
         }
       });
-}
-
-fetchSalesRecordsByDate(date: string) {
-  this.companyApiRequest.getSalesRecordsByDate(date).subscribe({
-    next: (response: any) => {
-      this.salesRecords = response as SalesRecord[];
-    },
-    error: (error) => {
-      console.error(error);
-    }
-  });
-}
-
-filterSalesRecordsByDate() {
-  if (this.filterDate) {
-    const selectedDate = new Date(this.filterDate).toISOString(); // Convert the selected date to the ISO string format
-    this.companyApiRequest.getSalesRecordsByDate(selectedDate).subscribe({
-      next: (response: any) => {
-        this.filteredSalesRecords = response as SalesRecord[];
-      },
-      error: (error) => {
-        console.error(error);
-      }
-    });
-  } else {
-    this.filteredSalesRecords = this.salesRecords;
-  }
-}
-
-
-
-
- 
   }
   
+
+  filterSalesRecordsByDate() {
+    if (this.filterDate) {
+      const selectedDate = new Date(this.filterDate).toISOString();
+      this.companyApiRequest.getSalesRecordsByDate(selectedDate).subscribe({
+        next: (response: any) => {
+          this.filteredSalesRecords = response as SalesRecord[];
+        },
+        error: (error) => {
+          console.error(error);
+        }
+      });
+    } else {
+      this.filteredSalesRecords = this.salesRecords;
+    }
+  }
+  
+  filterSalesRecords() {
+    if (this.filterDate) {
+      const filteredDate = new Date(this.filterDate);
+      this.filteredSalesRecords = this.salesRecords.filter(record => record.date >= filteredDate);
+    } else {
+      this.filteredSalesRecords = [...this.salesRecords];
+    }
+  }
+}
