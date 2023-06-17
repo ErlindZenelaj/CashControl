@@ -1,9 +1,4 @@
 ﻿@using Microsoft.AspNetCore.Identity;
-@using CashControlBack.Areas.Identity.Data;
-
-
-@inject SignInManager<ApplicationUser> SignInManager
-@inject UserManager<ApplicationUser> UserManager
 
 
 <!DOCTYPE html>
@@ -45,44 +40,9 @@
                             Home
                         </a>
                     </li>
-                    @if (SignInManager.IsSignedIn(User))
-                    {
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
-                                <i class="bi bi-people"></i>
-                                Roles
-
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li class="nav-item">
-                                    <a class="dropdown-item" asp-area="" asp-controller="RoleViews" asp-action="Index">Roles</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" asp-area="" asp-controller="RoleViews" asp-action="Manager">Manager</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" asp-area="" asp-controller="RoleViews" asp-action="Admin">Admin</a>
-                                </li>
-                            </ul>
-                        </li>
-
-
-                    }
-
-
-                    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Administrator"))
-                    {
-                        <li>
-                            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">
-                                <i class="bi bi-person-lines-fill"></i>
-                                Users
-                            </a>
-                        </li>
-
-                    }
-
-                    @if (SignInManager.IsSignedIn(User))
-                    {
+                    
+                    
+ 
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Dashboard" asp-action="Index">
                                 <i class="bi bi-activity"></i>
@@ -104,7 +64,7 @@
                             </a>
                         </li>
 
-                    }
+                   
                 </ul>
                 <hr>
 

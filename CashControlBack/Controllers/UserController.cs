@@ -1,159 +1,103 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+using CashControl.Context;
+using CashControl.Helpers;
+using CashControl.Models;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using CashControlBack.Areas.Identity.Data;
-using CashControlBack.Core.Repositories;
-using CashControlBack.Core.ViewModels;
-using Microsoft.AspNetCore.Authorization;
-using static CashControlBack.Core.Constants;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Text;
+using System.Text.RegularExpressions;
 
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace CashControlBack.Controllers
+namespace CashControl.Controllers
 {
-
-    public class UserController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class UserController : ControllerBase
     {
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly AppDbContext _authContext;
 
-        public UserController(IUnitOfWork unitOfWork, SignInManager<ApplicationUser> signInManager)
+        public UserController(AppDbContext appDbContext)
         {
-            _unitOfWork = unitOfWork;
-            _signInManager = signInManager;
+            _authContext = appDbContext;
         }
 
-
-
-        [Authorize(Roles = "Administrator")]
-        public IActionResult Index()
+        [HttpPost("authenticate")]
+        public async Task<IActionResult> Authenticate([FromBody] User userObj)
         {
-            var users = _unitOfWork.User.GetUsers();
-            return View(users);
-        }
 
-        public async Task<IActionResult> Edit(string id)
-        {
-            var user = _unitOfWork.User.GetUser(id);
-            var roles = _unitOfWork.Role.GetRoles();
+            if (userObj == null)
+                return BadRequest();
 
-            var userRoles = await _signInManager.UserManager.GetRolesAsync(user);
-
-
-            var roleItems = roles.Select(role =>
-                new SelectListItem(
-                    role.Name,
-                    role.Id,
-                    userRoles.Any(ur => ur.Contains(role.Name)))).ToList();
-
-
-
-            var vm = new EditUserViewModel
-            {
-                User = user,
-                Roles = roleItems
-            };
-
-            return View(vm);
-        }
-
-        public async Task<IActionResult> DeleteUser(string id)
-        {
-            var user = await _signInManager.UserManager.FindByIdAsync(id);
-
+            var user = await _authContext.Users
+                .FirstOrDefaultAsync(x => x.Username == userObj.Username);
             if (user == null)
+                return NotFound(new { Message = "User not found!" });
+            if (!PasswordHasher.VerifyPassword(userObj.Password, user.Password))
             {
-                ViewBag.ErrorMessage = $"User with Id = {id} cannot be found";
-                return View("NotFound");
+
+                return BadRequest(new { Message = "Password is incorrect" });
+
             }
-            else
+            return Ok(new
             {
-                var result = await _signInManager.UserManager.DeleteAsync(user);
-
-                if (result.Succeeded)
-                {
-                    return RedirectToAction("");
-                }
-
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError("", error.Description);
-                }
-
-                return View("");
-            }
-
-
+                Message = "Login Success!"
+            });
         }
 
-
-
-
-
-        [HttpPost]
-
-        public async Task<IActionResult> OnPostAsync(EditUserViewModel data)
+        [HttpPost("register")]
+        public async Task<IActionResult> RegisterUser([FromBody] User userObj)
         {
-            var user = _unitOfWork.User.GetUser(data.User.Id);
-            if (user == null)
+            if (userObj == null)
+                return BadRequest();
+            //Check username
+            if (await CheckUsernameExistAsync(userObj.Username))
+                return BadRequest(new { Message = "Username already exist" });
+            //Check email
+            if (await CheckEmailExistAsync(userObj.Email))
+                return BadRequest(new { Message = "Email already exist" });
+
+            //Check passwordstrength
+            var passMessage =CheckPasswordStrength(userObj.Password);
+            if (!string.IsNullOrEmpty(passMessage))
+                return BadRequest(new { Message = passMessage.ToString() });
+
+
+            userObj.Password = PasswordHasher.HashPassword(userObj.Password);
+            userObj.Role = "User";
+            userObj.Token = "";
+            await _authContext.Users.AddAsync(userObj);
+            await _authContext.SaveChangesAsync();
+
+            return Ok(new
             {
-                return NotFound();
-            }
-            var userRolesInDb = await _signInManager.UserManager.GetRolesAsync(user);
-
-            //Loop through the roles in ViewModel
-            //Check if the Role is Assigned In DB
-            //If Assigned -> Do Nothing
-            //If Not Assigned -> Add Role
-
-            var rolesToAdd = new List<string>();
-            var rolesToDelete = new List<string>();
-
-            foreach (var role in data.Roles)
-            {
-                var assignedInDb = userRolesInDb.FirstOrDefault(ur => ur == role.Text);
-                if (role.Selected)
-                {
-                    if (assignedInDb == null)
-                    {
-                        rolesToAdd.Add(role.Text);
-                    }
-                }
-                else
-                {
-                    if (assignedInDb != null)
-                    {
-                        rolesToDelete.Add(role.Text);
-                    }
-                }
-            }
-
-            if (rolesToAdd.Any())
-            {
-                await _signInManager.UserManager.AddToRolesAsync(user, rolesToAdd);
-            }
-
-            if (rolesToDelete.Any())
-            {
-                await _signInManager.UserManager.RemoveFromRolesAsync(user, rolesToDelete);
-            }
-
-            user.FirstName = data.User.FirstName;
-            user.LastName = data.User.LastName;
-            user.Email = data.User.Email;
-
-            _unitOfWork.User.UpdateUser(user);
-
-            return RedirectToAction("Edit", new { id = user.Id });
+                Message = "User Registered!"
+            });
         }
 
+        private Task<bool> CheckUsernameExistAsync(string username)
+            => _authContext.Users.AnyAsync(x => x.Username == username);
 
+        private Task<bool> CheckEmailExistAsync(string email)
+          => _authContext.Users.AnyAsync(x => x.Email == email);
 
+        private string CheckPasswordStrength (string pass)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            if (pass.Length < 9)
+                sb.Append("Minimum password length should be 8" + Environment.NewLine);
+            if (!(Regex.IsMatch(pass, "[a-z]") && Regex.IsMatch(pass, "[A-Z]") && Regex.IsMatch(pass, "[0-9]")))
+                sb.Append("Password should be AlphaNumeric" + Environment.NewLine);
+            if (!Regex.IsMatch(pass, "[<,>,@,!,#,$,%,^,&,*,(,),_,+,\\[,\\],{,},?,:,;,|,',\\,.,/,~,`,-,=]"))
+                sb.Append("Password should contain special charcter" + Environment.NewLine);
+            return sb.ToString();
+        }
     }
 }
-
