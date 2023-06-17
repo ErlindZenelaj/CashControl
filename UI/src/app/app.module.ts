@@ -14,7 +14,8 @@ import { CompanyLoginComponent } from './components/company-login/company-login.
 import { CompanySignupComponent } from './components/company-signup/company-signup.component'; // Import the FormsModule
 import { ConverterComponent } from './components/converter/converter.component';
 import { HomeComponent } from './components/home/home.component';
-
+import { AngularFireModule } from '@angular/fire/compat'
+import { environment } from 'src/environments/environment';
 
 @NgModule({
 
@@ -28,6 +29,14 @@ import { HomeComponent } from './components/home/home.component';
     FormsModule, // Add the FormsModule to the imports array
   ],
   providers: [CompanyApiRequest],
+
+    AngularFireModule.initializeApp(environment.firebase)
+
+  ],
+  providers: [
+
+  ],
+
   bootstrap: [AppComponent],
 })
 export class AppModule {}
