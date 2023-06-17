@@ -5,6 +5,7 @@ using CashControl.Context;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using CashControl.UtilityService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,7 +27,7 @@ Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Mgo+DSMBMAY9C3t2
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddScoped<IEmailService, EmailService>();
 
 //DI
 builder.Services.AddDbContext<ApplicationDb>(options =>

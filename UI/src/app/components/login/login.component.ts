@@ -8,6 +8,9 @@ import {
 import { Router } from '@angular/router';
 import validateAllForm from 'src/app/helpers/validateform';
 import { AuthService } from 'src/app/services/auth.service';
+import { ResetPasswordService } from 'src/app/services/reset-password.service';
+import { NgToastService } from 'ng-angular-popup';
+
 
 @Component({
   selector: 'app-login',
@@ -20,10 +23,14 @@ export class LoginComponent implements OnInit {
   eyeIcon: string = 'fa-eye-slash';
   loginForm!: FormGroup;
   message: string = 'message';
+  public resetPasswordEmail!: string;
+  public isValidEmail!: boolean;
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private toast: NgToastService,
+    private resetService: ResetPasswordService
   ) {}
 
   ngOnInit(): void {
@@ -61,7 +68,35 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  checkValidEmail(event:string){
+    const value = event;
+    const pattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,3}$/;
+    this.isValidEmail = pattern.test(value);
+    return this.isValidEmail;
+  }
+
+  confirmToSend() {
+    if(this.checkValidEmail(this.resetPasswordEmail)){
+      console.log(this.resetPasswordEmail);
+      
+      this.resetService.sendResetPasswordLink(this.resetPasswordEmail)
+      .subscribe({
+        next:(res)=>{
+          this.resetPasswordEmail="";
+          const ButtonRef = document.getElementById("closeBtn");
+          ButtonRef?.click();
+        },
+        error:(err)=>{
+
+        }
+      })
+    }
+  }
+
   signInWithGoogle(){
     this.auth.googleSignIn();
   }
+
+ 
+  
 }
