@@ -165,8 +165,7 @@ namespace CashControl.Controllers
             });
         }
 
-        [HttpPost("reset-email")]
-
+        [HttpPost("reset-password")]
         public async Task<IActionResult> ResetPassword(ResetPasswordDto resetPasswordDto)
         {
             var newToken = resetPasswordDto.EmailToken.Replace(" ", "+");
