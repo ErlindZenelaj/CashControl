@@ -17,10 +17,11 @@ import { HomeComponent } from './components/home/home.component';
 import { AngularFireModule } from '@angular/fire/compat'
 import { environment } from 'src/environments/environment';
 import { NgToastModule } from 'ng-angular-popup';
+import { ResetComponent } from './components/reset/reset.component';
 
 @NgModule({
 
-  declarations: [AppComponent, LoginComponent, SignupComponent, DashboardComponent, CompanyComponent, CompanyLoginComponent, CompanySignupComponent,ConverterComponent],
+  declarations: [AppComponent, LoginComponent, SignupComponent, DashboardComponent, CompanyComponent, CompanyLoginComponent, CompanySignupComponent,ConverterComponent,HomeComponent, ResetComponent],
 
   imports: [
     BrowserModule,

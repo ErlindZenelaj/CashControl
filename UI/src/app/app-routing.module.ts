@@ -9,6 +9,7 @@ import { CompanySignupComponent } from './components/company-signup/company-sign
 import { AuthGuard } from './guards/auth.guard';
 import { ConverterComponent } from './components/converter/converter.component';
 import { HomeComponent } from './components/home/home.component';
+import { ResetComponent } from './components/reset/reset.component';
 
 const routes: Routes = [
   {
@@ -43,6 +44,10 @@ const routes: Routes = [
     path: 'converter',
     component: ConverterComponent,
   },
+  {
+    path:'reset',
+    component: ResetComponent,
+  }
 ];
 
 @NgModule({
