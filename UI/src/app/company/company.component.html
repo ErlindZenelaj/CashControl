@@ -39,21 +39,80 @@
     </div>
   </div>
 
-  <!-- Form to add a product -->
-  <div class="add-product-form" *ngIf="showAddProductForm">
-    <h2>Add Product</h2>
-    <form (submit)="addProduct()">
-      <label>
-        Product Name:
-        <input type="text" [(ngModel)]="newProduct.productName" name="productName" required />
-      </label>
-      <label>
-        Selling Price:
-        <input type="number" [(ngModel)]="newProduct.sellingPrice" name="sellingPrice" required />
-      </label>
-      <button type="submit">Add</button>
-    </form>
-  </div>
-
   <p>Total Profit: {{ calculateTotalProfit() }}</p>
+
+  <button (click)="generateSalesTable()">Generate Sales Table</button>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Product Index</th>
+        <th>Product Name</th>
+        <th>Product Quantity</th>
+        <th>Product Remainings</th>
+        <th>Price</th>
+        <th>Profit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let salesRecord of salesRecords">
+        <td>{{ salesRecord.date | date }}</td>
+        <td>{{ salesRecord.productIndex }}</td>
+        <td>{{ salesRecord.productName }}</td>
+        <td>{{ salesRecord.productQuantity }}</td>
+        <td>{{ salesRecord.productRemainings }}</td>
+        <td>{{ salesRecord.price }}</td>
+        <td>{{ salesRecord.profit }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button (click)="saveSalesRecords()">Save Sales Records</button>
+
+
+  <!-- Existing template code... -->
+
+<!-- Existing template code... -->
+
+
+<h1>Sales Records</h1>
+
+<!-- Form to filter sales records by date -->
+<div class="filter-form">
+  <label>
+    Filter by Date:
+    <input type="date" [(ngModel)]="filterDate" (ngModelChange)="filterSalesRecordsByDate()" />
+  </label>
+</div>
+
+<!-- Display the filtered sales records -->
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Product Index</th>
+      <th>Product Name</th>
+      <th>Product Quantity</th>
+      <th>Product Remainings</th>
+      <th>Price</th>
+      <th>Profit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let salesRecord of filteredSalesRecords">
+      <td>{{ salesRecord.date | date }}</td>
+      <td>{{ salesRecord.productIndex }}</td>
+      <td>{{ salesRecord.productName }}</td>
+      <td>{{ salesRecord.productQuantity }}</td>
+      <td>{{ salesRecord.productRemainings }}</td>
+      <td>{{ salesRecord.price }}</td>
+      <td>{{ salesRecord.profit }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- End of template code... -->
+
+
 </div>

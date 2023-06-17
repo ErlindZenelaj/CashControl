@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using CashControlBack.Models;
 using Microsoft.EntityFrameworkCore;
 using CashControl.Context;
+using CashControl.Models;
 
 namespace CashControl.Controllers
 {
@@ -44,8 +45,29 @@ namespace CashControl.Controllers
             return Ok(product);
         }
 
+        [HttpPost("sales-records")]
+        public IActionResult SaveSalesRecords([FromBody] List<SalesRecord> salesRecords)
+        {
+            foreach (var salesRecord in salesRecords)
+            {
+                // Save salesRecord to the database using Entity Framework or your preferred ORM
+                _dbContext.SalesRecords.Add(salesRecord);
+            }
 
+            _dbContext.SaveChanges();
 
+            return Ok();
+        }
+
+        [HttpGet("sales-records")]
+        public IActionResult GetSalesRecordsByDate(DateTime date)
+        {
+            var salesRecords = _dbContext.SalesRecords
+                .Where(s => s.Date.Date == date.Date)
+                .ToList();
+
+            return Ok(salesRecords);
+        }
         // POST api/CompanyProduct
         [HttpPost]
         public IActionResult Post([FromBody] CompanyProduct companyProduct)

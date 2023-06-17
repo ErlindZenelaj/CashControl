@@ -19,7 +19,11 @@ export class CompanyApiRequest {
     createProduct(product: any) {
       return this.http.post(`${this.baseUrl}`, product);
     }
-  
+
+    saveSalesRecords(salesRecords: any[]) {
+      return this.http.post(`${this.baseUrl}/sales-records`, salesRecords);
+    }
+
     updateProduct(id: number, product: any) {
       return this.http.put(`${this.baseUrl}/Update/${id}`, product);
     }
@@ -27,6 +31,11 @@ export class CompanyApiRequest {
     deleteProduct(id: number) {
       return this.http.delete(`${this.baseUrl}/Delete/${id}`);
     }
+    
+    getSalesRecordsByDate(date: string) {
+      return this.http.get(`${this.baseUrl}/sales-records?date=${date}`);
+    }
+    
   }
   
   

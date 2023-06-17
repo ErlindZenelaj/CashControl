@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CompanyApiRequest } from '../services/CompanyApiRequest.service';
 import { CompanyProduct } from './companyProduct.model';
+import { SalesRecord } from './sales-record.model';
 
 @Component({
-  selector: 'app-product',
+  selector: 'app-company',
   templateUrl: './company.component.html',
   styleUrls: ['./company.component.css']
 })
@@ -19,6 +20,9 @@ export class CompanyComponent implements OnInit {
     profit: 0
   };
   showAddProductForm: boolean = false;
+  salesRecords: SalesRecord[] = [];
+  filterDate: string = '';
+  filteredSalesRecords: SalesRecord[] = [];
 
   constructor(private companyApiRequest: CompanyApiRequest) { }
 
@@ -42,7 +46,6 @@ export class CompanyComponent implements OnInit {
       }
     });
   }
-
 
   addProduct() {
     // Validate the new product data
@@ -70,7 +73,6 @@ export class CompanyComponent implements OnInit {
     product.isEditing = !product.isEditing;
   }
 
-
   updateProduct(id: number, product: CompanyProduct) {
     // Update the product
     this.companyApiRequest.updateProduct(id, product).subscribe({
@@ -89,14 +91,14 @@ export class CompanyComponent implements OnInit {
         console.error(error);
       }
     });
-  
+
     this.calculateTotalProfit(); // Recalculate the total profit
   }
-  
+
   deleteProduct(id: number) {
     // Display a confirmation dialog to confirm deletion
     const confirmDelete = confirm("Are you sure you want to delete this product?");
-  
+
     if (confirmDelete) {
       // Make the API request to delete the product
       this.companyApiRequest.deleteProduct(id).subscribe({
@@ -110,20 +112,22 @@ export class CompanyComponent implements OnInit {
           console.error(error);
         }
       });
-  
+
       this.calculateTotalProfit(); // Recalculate the total profit
     }
   }
 
   calculateProfit(product: CompanyProduct): number {
-    return (product.productQuantity - product.productRemainings) * product.sellingPrice;
+    return product.sellingPrice * (product.productQuantity - product.productRemainings);
   }
 
   calculateTotalProfit(): number {
     let totalProfit = 0;
-    for (const product of this.products) {
+
+    this.products.forEach((product: CompanyProduct) => {
       totalProfit += this.calculateProfit(product);
-    }
+    });
+
     return totalProfit;
   }
 
@@ -131,12 +135,85 @@ export class CompanyComponent implements OnInit {
     this.showAddProductForm = true;
   }
 
+  cancelAddProduct() {
+    this.showAddProductForm = false;
+    this.clearNewProductForm();
+  }
+
   clearNewProductForm() {
-    this.newProduct.productId = 0;
-    this.newProduct.productName = '';
-    this.newProduct.productQuantity = 0;
-    this.newProduct.productRemainings = 0;
-    this.newProduct.sellingPrice = 0;
-    this.newProduct.profit = 0;
+    this.newProduct = {
+      productId: 0,
+      productName: '',
+      productQuantity: 0,
+      productRemainings: 0,
+      sellingPrice: 0,
+      profit: 0
+    };
+  }
+
+  generateSalesTable() {
+    this.salesRecords = [];
+
+    this.products.forEach((product: CompanyProduct, index: number) => {
+      const salesRecord: SalesRecord = {
+        date: new Date(),
+        productIndex: index + 1,
+        productName: product.productName,
+        productQuantity: product.productQuantity,
+        productRemainings: product.productRemainings,
+        price: product.sellingPrice,
+        profit: this.calculateProfit(product)
+      };
+
+      this.salesRecords.push(salesRecord);
+    });
+  }
+
+  saveSalesRecords() {
+    this.companyApiRequest.saveSalesRecords(this.salesRecords)
+      .subscribe({
+        next: response => {
+          console.log('Sales records saved successfully');
+          console.log(this.salesRecords)
+          // Handle the successful save as needed
+        },
+        error: error => {
+          console.error(error);
+          // Handle the error case as needed
+        }
+      });
+}
+
+fetchSalesRecordsByDate(date: string) {
+  this.companyApiRequest.getSalesRecordsByDate(date).subscribe({
+    next: (response: any) => {
+      this.salesRecords = response as SalesRecord[];
+    },
+    error: (error) => {
+      console.error(error);
+    }
+  });
+}
+
+filterSalesRecordsByDate() {
+  if (this.filterDate) {
+    const selectedDate = new Date(this.filterDate).toISOString(); // Convert the selected date to the ISO string format
+    this.companyApiRequest.getSalesRecordsByDate(selectedDate).subscribe({
+      next: (response: any) => {
+        this.filteredSalesRecords = response as SalesRecord[];
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    });
+  } else {
+    this.filteredSalesRecords = this.salesRecords;
   }
 }
+
+
+
+
+ 
+  }
+  
