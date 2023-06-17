@@ -10,7 +10,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ConverterComponent } from './components/converter/converter.component';
 import { HomeComponent } from './components/home/home.component';
-
+import { AngularFireModule } from '@angular/fire/compat'
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, SignupComponent, DashboardComponent, ConverterComponent, HomeComponent],
@@ -19,9 +20,12 @@ import { HomeComponent } from './components/home/home.component';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase)
 
   ],
-  providers: [],
+  providers: [
+
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

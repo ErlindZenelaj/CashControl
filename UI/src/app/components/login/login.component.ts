@@ -60,4 +60,8 @@ export class LoginComponent implements OnInit {
       //throw error using toster with required fields
     }
   }
+
+  signInWithGoogle(){
+    this.auth.googleSignIn();
+  }
 }
