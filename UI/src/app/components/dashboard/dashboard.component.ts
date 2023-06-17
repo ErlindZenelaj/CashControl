@@ -8,12 +8,13 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  users: any;
+  public users: any;
   constructor(private api : ApiService, private auth: AuthService) {}
 
   ngOnInit() {
     // Redirect to the desired URL
     window.location.href = 'http://localhost:5039/Dashboard';
+    
   }
 
   logout(){

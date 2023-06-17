@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
 import validateAllForm from 'src/app/helpers/validateform';
 import { AuthService } from 'src/app/services/auth.service';
 import { ResetPasswordService } from 'src/app/services/reset-password.service';
-import { NgToastService } from 'ng-angular-popup';
 
 
 @Component({
@@ -29,7 +28,6 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private auth: AuthService,
     private router: Router,
-    private toast: NgToastService,
     private resetService: ResetPasswordService
   ) {}
 
