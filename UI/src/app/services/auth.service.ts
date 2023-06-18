@@ -9,7 +9,7 @@ import { GoogleAuthProvider, GithubAuthProvider, FacebookAuthProvider} from '@an
   providedIn: 'root',
 })
 export class AuthService {
-  private baseUrl: string = 'http://localhost:5039/api/user/'
+  private baseUrl: string = 'http://localhost:5039/api/'
   constructor(private http: HttpClient, private router: Router, private fireauth : AngularFireAuth) {}
 
   signUp(userObj: any) {

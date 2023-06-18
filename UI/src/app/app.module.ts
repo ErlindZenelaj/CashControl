@@ -5,9 +5,8 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { CompanyApiRequest } from './services/CompanyApiRequest.service';
 import { CompanyComponent } from './company/company.component';
 import { FormsModule } from '@angular/forms';
 import { CompanyLoginComponent } from './components/company-login/company-login.component';
@@ -18,10 +17,11 @@ import { AngularFireModule } from '@angular/fire/compat'
 import { environment } from 'src/environments/environment';
 import { NgToastModule } from 'ng-angular-popup';
 import { ResetComponent } from './components/reset/reset.component';
+import { CompanyApiRequest } from './services/CompanyApiRequest.service';
 
 @NgModule({
 
-  declarations: [AppComponent, LoginComponent, SignupComponent, DashboardComponent, CompanyComponent, CompanyLoginComponent, CompanySignupComponent,ConverterComponent,HomeComponent, ResetComponent],
+  declarations: [AppComponent,LoginComponent, SignupComponent, DashboardComponent, CompanyComponent, CompanyLoginComponent, CompanySignupComponent,ConverterComponent,HomeComponent, ResetComponent],
 
   imports: [
     BrowserModule,
@@ -34,6 +34,7 @@ import { ResetComponent } from './components/reset/reset.component';
 
   ],
   providers: [
+    CompanyApiRequest
     
 
   ],

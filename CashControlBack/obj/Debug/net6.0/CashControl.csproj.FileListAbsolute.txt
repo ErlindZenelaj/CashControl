@@ -834,3 +834,7 @@ C:/Users/User/Documents/GitHub/CashControl/CashControlBack/obj/Debug/net6.0/Cash
 C:/Users/User/Documents/GitHub/CashControl/CashControlBack/obj/Debug/net6.0/CashControl.genruntimeconfig.cache
 C:/Users/User/Documents/GitHub/CashControl/CashControlBack/obj/Debug/net6.0/ref/CashControl.dll
 >>>>>>> bc4b466 (Added Logout function)
+/Users/erlindzenelaj/Documents/GitHub/CashControl/CashControlBack/bin/Debug/net6.0/MailKit.dll
+/Users/erlindzenelaj/Documents/GitHub/CashControl/CashControlBack/bin/Debug/net6.0/MimeKit.dll
+/Users/erlindzenelaj/Documents/GitHub/CashControl/CashControlBack/bin/Debug/net6.0/NETCore.MailKit.dll
+/Users/erlindzenelaj/Documents/GitHub/CashControl/CashControlBack/bin/Debug/net6.0/BouncyCastle.Crypto.dll

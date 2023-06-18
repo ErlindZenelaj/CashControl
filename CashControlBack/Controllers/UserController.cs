@@ -24,15 +24,15 @@ using CashControl.Models.Dto;
 
 namespace CashControl.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("api/users")]
-    public class UserController : Controller
+    public class UserController : ControllerBase
     {
         private readonly AppDbContext _authContext;
         private readonly IConfiguration _configuration;
         private readonly IEmailService _emailService;
 
-        public UserController(AppDbContext appDbContext,IConfiguration configuration,IEmailService emailService)
+        public UserController(AppDbContext appDbContext, IConfiguration configuration, IEmailService emailService)
         {
             _authContext = appDbContext;
             _configuration = configuration;
@@ -63,7 +63,7 @@ namespace CashControl.Controllers
             {
                 Token = user.Token,
                 Message = "Login Success!"
-            }) ;
+            });
         }
 
         [HttpPost("register")]
@@ -79,7 +79,7 @@ namespace CashControl.Controllers
                 return BadRequest(new { Message = "Email already exist" });
 
             //Check passwordstrength
-            var passMessage =CheckPasswordStrength(userObj.Password);
+            var passMessage = CheckPasswordStrength(userObj.Password);
             if (!string.IsNullOrEmpty(passMessage))
                 return BadRequest(new { Message = passMessage.ToString() });
 
@@ -96,82 +96,13 @@ namespace CashControl.Controllers
             });
         }
 
-        [HttpGet]
-        [Authorize(Roles = "Administrator")]
-        public IActionResult GetUsers()
-        {
-            var users = _unitOfWork.User.GetUsers();
-            return Ok(users);
-        }
-
-        [HttpGet("{id}")]
-        [Authorize(Roles = "Administrator")]
-        public IActionResult GetUser(string id)
-        {
-            var user = _unitOfWork.User.GetUser(id);
-
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(user);
-        }
-
-        [HttpPut("{id}")]
-        [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> UpdateUser(string id, EditUserViewModel data)
-        {
-            var user = _unitOfWork.User.GetUser(id);
-
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            var userRolesInDb = await _signInManager.UserManager.GetRolesAsync(user);
-
-            // Your role update logic here
-
-            user.FirstName = data.User.FirstName;
-            user.LastName = data.User.LastName;
-            user.Email = data.User.Email;
-
-            _unitOfWork.User.UpdateUser(user);
-
-            return Ok(user);
-        }
-
-        [HttpDelete("{id}")]
-        [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> DeleteUserApi(string id)
-        {
-            var user = await _signInManager.UserManager.FindByIdAsync(id);
-
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            var result = await _signInManager.UserManager.DeleteAsync(user);
-
-            if (result.Succeeded)
-            {
-                return NoContent();
-            }
-
-            foreach (var error in result.Errors)
-            {
-                ModelState.AddModelError("", error.Description);
-            }
-
-            return BadRequest(ModelState);
-        }
+        private Task<bool> CheckUsernameExistAsync(string username)
+            => _authContext.Users.AnyAsync(x => x.Username == username);
 
         private Task<bool> CheckEmailExistAsync(string email)
           => _authContext.Users.AnyAsync(x => x.Email == email);
 
-        private string CheckPasswordStrength (string pass)
+        private string CheckPasswordStrength(string pass)
         {
             StringBuilder sb = new StringBuilder();
 
@@ -210,7 +141,7 @@ namespace CashControl.Controllers
         public async Task<IActionResult> SendEmail(string email)
         {
             var user = await _authContext.Users.FirstOrDefaultAsync(a => a.Email == email);
-            if(user is null)
+            if (user is null)
             {
                 return NotFound(new
                 {
@@ -249,7 +180,7 @@ namespace CashControl.Controllers
             }
             var tokenCode = user.ResetPasswordToken;
             DateTime emailTokenExpiry = user.ResetPasswordExpiry;
-            if(tokenCode != resetPasswordDto.EmailToken || emailTokenExpiry < DateTime.Now)
+            if (tokenCode != resetPasswordDto.EmailToken || emailTokenExpiry < DateTime.Now)
             {
                 return BadRequest(new
                 {
