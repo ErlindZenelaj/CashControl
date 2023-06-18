@@ -1,38 +1,29 @@
 ﻿<Properties StartupConfiguration="{2CF2F6CD-C335-4CB3-8F15-9DA0B1F4F038}|CashControlBack">
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.CashControl PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../../../../../usr/local/share/dotnet/sdk/7.0.203/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/UserController.cs">
     <Files>
-      <File FileName="appsettings.json" Line="12" Column="52" />
-      <File FileName="Controllers/UserController.cs" Line="37" Column="1" />
-      <File FileName="Models/User.cs" Line="16" Column="45" />
-      <File FileName="Program.cs" Line="18" Column="31" />
-      <File FileName="Context/AppDbContext.cs" Line="14" Column="47" />
-      <File FileName="Models/ApplicationDb.cs" Line="12" Column="4" />
-      <File FileName="Models/Category.cs" Line="1" Column="1" />
-      <File FileName="Models/Currency.cs" Line="1" Column="1" />
-      <File FileName="Models/Transaction.cs" Line="8" Column="2" />
-      <File FileName="../../../../../../usr/local/share/dotnet/sdk/7.0.203/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets" Line="266" Column="5" />
+      <File FileName="Controllers/DashboardController.cs" />
+      <File FileName="Controllers/UserController.cs" Line="174" Column="14" />
+      <File FileName="appsettings.json" Line="11" Column="97" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="CashControlBack" expanded="True">
             <Node name="CashControl" expanded="True">
-              <Node name="Dependencies" expanded="True">
-                <Node name="PackageDependencies" expanded="True" />
-              </Node>
-              <Node name="Context" expanded="True" />
-              <Node name="Models" expanded="True" />
+              <Node name="Dependencies" expanded="True" />
+              <Node name="Controllers" expanded="True" />
             </Node>
+            <Node name="FinancialApp" expanded="True" />
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.ItemProperties.CashControl PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MultiItemStartupConfigurations />
 </Properties>

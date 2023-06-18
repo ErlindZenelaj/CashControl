@@ -6,8 +6,15 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CompanyComponent } from './company/company.component'; // Import the CompanyComponent
 import { CompanyLoginComponent } from './components/company-login/company-login.component';
 import { CompanySignupComponent } from './components/company-signup/company-signup.component';
+import { ConverterComponent } from './components/converter/converter.component';
+import { HomeComponent } from './components/home/home.component';
+import { ResetComponent } from './components/reset/reset.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    component: HomeComponent,
+  },
   {
     path: 'login',
     component: LoginComponent,
@@ -26,12 +33,20 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashboardComponent,
+    component: DashboardComponent, 
   },
   {
-    path: 'company', // Define the path for the CompanyComponent
-    component: CompanyComponent, // Assign the CompanyComponent as the component for this route
+    path: 'company', 
+    component: CompanyComponent, 
   },
+  {
+    path: 'converter',
+    component: ConverterComponent,
+  },
+  {
+    path:'reset',
+    component: ResetComponent,
+  }
 ];
 
 @NgModule({
